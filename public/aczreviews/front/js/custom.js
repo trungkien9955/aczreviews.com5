@@ -46,8 +46,6 @@ $(document).ready(function(){
                     $('.info-stock span.stock-data').html("0");
                     $('.stock-check').html("<span style = 'color: #e02027;font-weight: 700;' >Tạm hết hàng</span>");
                 }
-                // $('.easyzoom1 a').attr('href',"/FlowerShop/front/images-3/product_images/large/" + $image)
-                // $('.product-detail-image img').attr('src',"/FlowerShop/front/images-3/product_images/medium/"+ $image)
             },
             error: function(){
                 $("#ajax_loading_overlay").fadeOut(300);
@@ -87,27 +85,8 @@ $(document).ready(function(){
              }
          })
      })
-     //product comment
 })
-// $(document).on('click', '.pagination a', function(event){
-//     event.preventDefault();
-//     var page = $(this).attr('href').split('page=')[1];
-//     var product_id = $('#product_id').val();
-//     $.ajax({
-//         headers: {
-//             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//         },
-//         method: "post",
-//         url: "/product-comment",
-//         data: {product_id: product_id},
-//         success:function(resp){
-//             $('.review-data-items').html(resp);
-//         },
-//         error: function(){
-//             alert('Error');
-//         }
-//     })
-// })
+
 $(document).on('click', '.info-action .cart-button', function(){
     // event.preventDefault();
     var price_element = $('.info-price h4 span').html();
@@ -531,9 +510,9 @@ $(document).on('click', '.gallery-image', function(){
     $('.product-detail-image').attr('src', $src);
 })
 function openNav() {
-    document.getElementById("mySidenav").style.width = "100%";
+    $("#side-nav").fadeIn();
   }
   
   function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
+    $("#side-nav").fadeOut();
   }

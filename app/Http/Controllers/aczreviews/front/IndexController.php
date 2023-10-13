@@ -8,7 +8,7 @@ use Session;
 class IndexController extends Controller
 {
     public function index(){
-        Session::put('page', 'home');
-        return view('aczreviews.front.layout.test');
+        return view('aczreviews.front.layout.layout');
     }
+
 }
