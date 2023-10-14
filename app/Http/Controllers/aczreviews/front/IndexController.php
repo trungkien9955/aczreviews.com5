@@ -8,7 +8,7 @@ use Session;
 class IndexController extends Controller
 {
     public function index(){
-        return view('aczreviews.front.layout.layout');
+        return view('aczreviews.front.layout.index');
     }
 
 }

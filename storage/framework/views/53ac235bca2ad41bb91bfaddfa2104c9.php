@@ -1,12 +1,12 @@
-@extends('aczreviews.front.layout.layout')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <div class="main-section">
     <div class="banner-section">
         <div class="container overflow-hidden">
             <div class="home-banner">
                 <div class="home-banner-wrapper owl-carousel owl-carousel-home-banners">
-                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
-                    <img src="{{url('aczreviews/front/images/banner_images/banner-2.jpg')}}" alt="">
+                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
+                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-2.jpg')); ?>" alt="">
                 </div>
             </div>
         </div>
@@ -22,10 +22,10 @@
                             </div>
                             <div class="home-block-content">
                                 <div class="home-block-content-wrapper">
-                                    <a href="/product"><img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt=""></a>
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
+                                    <a href="/product"><img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt=""></a>
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
                                 </div>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                             </div>
                             <div class="home-block-content">
                                 <div class="home-block-content-one-img">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
                                 </div>
                             </div>
                         </div>
@@ -49,10 +49,10 @@
                             </div>
                             <div class="home-block-content">
                                 <div class="home-block-content-wrapper">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
                                 </div>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                             </div>
                             <div class="home-block-content">
                                 <div class="home-block-content-one-img">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
                                 </div>
                             </div>
                         </div>
@@ -78,10 +78,10 @@
                             </div>
                             <div class="home-block-content">
                                 <div class="home-block-content-wrapper">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
                                 </div>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                             </div>
                             <div class="home-block-content">
                                 <div class="home-block-content-one-img">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
                                 </div>
                             </div>
                         </div>
@@ -105,10 +105,10 @@
                             </div>
                             <div class="home-block-content">
                                 <div class="home-block-content-wrapper">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
                                 </div>
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                             </div>
                             <div class="home-block-content">
                                 <div class="home-block-content-one-img">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
                                 </div>
                             </div>
                         </div>
@@ -134,10 +134,10 @@
                             </div>
                             <div class="home-block-content">
                                 <div class="home-block-content-wrapper">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
                                 </div>
                             </div>
                         </div>
@@ -149,7 +149,7 @@
                             </div>
                             <div class="home-block-content">
                                 <div class="home-block-content-one-img">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
                                 </div>
                             </div>
                         </div>
@@ -161,10 +161,10 @@
                             </div>
                             <div class="home-block-content">
                                 <div class="home-block-content-wrapper">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
                                 </div>
                             </div>
                         </div>
@@ -176,7 +176,7 @@
                             </div>
                             <div class="home-block-content">
                                 <div class="home-block-content-one-img">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
                                 </div>
                             </div>
                         </div>
@@ -188,7 +188,7 @@
                             </div>
                             <div class="home-block-content">
                                 <div class="home-block-content-one-img">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
                                 </div>
                             </div>
                         </div>
@@ -200,7 +200,7 @@
                             </div>
                             <div class="home-block-content">
                                 <div class="home-block-content-one-img">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
                                 </div>
                             </div>
                         </div>
@@ -212,7 +212,7 @@
                             </div>
                             <div class="home-block-content">
                                 <div class="home-block-content-one-img">
-                                    <img src="{{url('aczreviews/front/images/banner_images/banner-1.jpg')}}" alt="">
+                                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
                                 </div>
                             </div>
                         </div>
@@ -222,4 +222,5 @@
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('aczreviews.front.layout.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\aczreviews\resources\views/aczreviews/front/layout/index.blade.php ENDPATH**/ ?>

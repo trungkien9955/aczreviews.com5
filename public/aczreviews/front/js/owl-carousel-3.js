@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	var owl_banner = $('.owl-carousel.owl-carousel-banner');
+	var owl_home_banners = $('.owl-carousel.owl-carousel-home-banners');
 	var owl_new = $('.owl-carousel.owl-carousel-new-flowers');
     var owl_topbar = $('.owl-carousel.owl-carousel-top-bar');
     var owl_home_slider = $('.owl-carousel.owl-carousel-home-slider');
@@ -151,7 +151,7 @@ $(document).ready(function() {
 		autoplayTimeout: 2000,
 		autoplayHoverPause: true,
 	});
-	owl_banner.owlCarousel({
+	owl_home_banners.owlCarousel({
 		items: 1,
 		loop: true,
 		margin: 10,

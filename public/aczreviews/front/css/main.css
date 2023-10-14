@@ -19,6 +19,16 @@ footer {
 .header-section-second a:hover{
     color: #e62263;
 }
+.overlay{
+    position: fixed;
+    display: none;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 99;
+  }  
 
 #loading {
     position: fixed;
@@ -85,8 +95,6 @@ footer {
     flex-wrap: wrap;
     padding: 10px 0;
     justify-content: space-between;
-}
-.header-second-left {
 }
 .header-second-middle {
     flex: 1;
@@ -240,22 +248,45 @@ footer {
         width: 100%;
     }
   }
-  .main-menu {
+  .side-nav-icon {
+    align-items: center;
+  }
+  .lower-menu-wrapper {
     background-color: #232f3e;
     position:relative;
+    display: flex;
+    align-items: center;
+
+  }
+  .lower-menu-list {
+    margin: 0;
+    padding: 0;
+    margin-left:12px;
+    align-items: center;
+    display: flex;
+  }
+  .lower-menu-list li {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 12px 6px;
+    font-size: 18px;
+    
+  }
+  .lower-menu-list li:hover {
+    border: 1px solid #e1e1e1;
   }
 .side-nav {
-    display:none;
     background-color: #fff;
     color: var(--text-color);
-    padding-top: 24px;
     width: 250px;
-    position: absolute;
     z-index: 999;
-    top: 100%;
-    left: 0;
     overflow-x: hidden;
     transition: 0.5s;
+    position: fixed;
+    display: none;
+    top: 0px;
+    left: 0px;
+    z-index: 999;
   }
   
   .side-nav a:hover {
@@ -368,137 +399,119 @@ footer {
     border: 0;
 }
 /* header end */
-/* home-slider */
-.home-slider {
-    margin-bottom: 2px;
+/* main-section starts */
+/* products-section starts */
+.products-section-wrapper .row {
+    margin-top: 36px;
+    padding-bottom: 36px;
 }
-.slider-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-}
-.slider-top {
-    flex: 0 0 calc(100% - 275px);
-    max-width: calc(100% - 275px);
-}
-.slider-top-wrapper {
-    display: flex;
+.home-block-content-wrapper {
+    display:flex;
     flex-wrap: wrap;
 }
-.slider-top-left {
-    flex: 0 0 66.66666667%;
-    max-width: 66.66666667%;
-    max-height: 456px;
+.home-block-content-wrapper img {
+    width: 100px;
+    height:100px;
+    margin: 10px;
+    flex:1;
+    flex-grow:1;
 }
-.home-slider-image-container a img {
-    object-fit: fill;
-    height: 100%;
-    min-height: 456px;
+@media only screen and (max-width: 576px) {
+    .home-block-content-wrapper img {
+        width: 150px;
+        height:150px;
+    }
 }
-.slider-top-right {
-    flex: 0 0 33%;
-    max-width: 33%;
-   /* max-height: 456px; */
-    overflow: hidden;
-}
-.slider-top-right ul {
-    flex: 1;
-    padding-left: 3px;
-}
-.slider-top-right-wrapper li {
-    margin-bottom: 2px;
-    height: 228px;
-}
-.slider-top-right-wrapper li a{
-    display: block;
-}
-.slider-top-right-wrapper img {
+.home-block-content-one-img img {
     object-fit: cover;
-    height: 228px;
 }
-
-/* home-banner */
-.banner-wrapper {
-    display: flex;
-    flex-wrap: wrap;
+/* detail starts */
+.detail-gal {
+    position:relative;
 }
- .banner-item {
-    flex-basis: 0;
-    flex-grow: 1;
-    margin-left: 4px;
+.detail-gal .detail-main-img {
+    width: 86%;
+    float: right;
+    /* width: 450px; */
+    /* height: 450px; */
 }
-.banner-wrapper .banner-item:first-child {
-    margin-left:0;
-}
-.banner-item img {
-    border-radius: 6px;
-}
-/* main data */
-.block-title {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid var(--primary_color);
-
-}
-.block-title a {
-    flex: 0 0 auto;
-    display: block;
-    margin-bottom: 0;
-}
-.block-title h2 {
-    font-weight: 600;
-    line-height: 36px;
-    font-size: 24px;
-    padding: 5px 8px 4px 12px;
-    /* display: flex; */
-    align-items: center;
-    text-transform: uppercase;
-    background: var(--primary_color);
-    color: white;
-    border-radius: 4px 0 0 4px;
-    position: relative;
-}
-.block-title h2::after {
-    content: '';
-    display: block;
-    position: absolute;
+.detail-gal .detail-thumb {
+    position:absolute;
+    left:0;
     top:0;
-    right: -23px;
-    width: 0;
-    height: 0;
-    border-top: 22px solid transparent;
-    border-right: 0 solid transparent;
-    border-bottom: 24px solid transparent;
-    border-left: 24px solid var(--primary_color);
+    width: 50px;
+    padding: 4px;
 }
-.block-title ul {
-    margin-left: auto;
+.detail-gal .detail-thumb img {
+    border: 1px solid #3c3c3c;
+    border-radius: 6px;
+    margin-bottom: 4px;
+}
 
-}
-.block-title ul li {
-    display: inline-block;
-    margin-right: 12px;
+.detail-vendor-head {
+    background-color: var(--primary-color-2);
+    color: #e1e1e1;
+    padding: 8px;
+    position: relative;
     
 }
-.block-title ul li a {
-    display: block;
-    font-size: 12px;
-    border: 2px solid var(--primary_color);
-    border-radius: 6px;
-    padding: 6px 12px;
+.detail-vendor-img {
+    display:inline-block;
 }
-.block-links {
-    display: none;
+.detail-vendor-name {
+    font-size: 22px;
+    position:absolute;
+    bottom: 12px;
+    left:80px;
 }
-/* .block-items-slider {
-    display: flex;
-    justify-content: space-around;
-} */
-/* product item */
+.detail-vendor-name span {
+    margin-bottom: 0;
+}
+.detail-vendor-img img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+.detail-vendor-badges {
+    display:inline-block;
+}
+.detail-vendor-badges img {
+    width: 20px;
+    height: 20px;
+    vertical-align: top;
 
-.block-items {
-    margin-top: 6px;
 }
+.detail-vendor-wrapper {
+    background-color: #7b828b;
+    color: var(--text-color);
+    padding: 8px;
+}
+.detail-vendor-inner-wrapper {
+    margin:auto;
+    background-color: #fff;
+    padding: 6px;
+}
+.detail-vendor-price {
+    color: var(--red-color);
+    font-size: 25px;
+    font-weight:bold;
+    letter-spacing: 1px;
+}
+.detail-vendor-offer span {
+    background-color: var(--primary-color-2);
+    color: #e1e1e1;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+.detail-vendor-action span {
+    font-size:16px;
+    color:#fff;
+}
+.detail-vendor-action span:not(:first-child) {
+    margin-left: 12px;
+}
+/* home-banner */
+
 .item {
     padding: 24px 6px;
     border: 1px solid var(--primary_color);

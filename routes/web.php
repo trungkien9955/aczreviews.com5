@@ -26,5 +26,5 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\aczreviews\admin')->gro
 
 Route::namespace('App\Http\Controllers\aczreviews\front')->group(function(){
     Route::match(['get', 'post'],'/', 'IndexController@index');
-
+    Route::get('/product', 'ProductController@detail');
 });
