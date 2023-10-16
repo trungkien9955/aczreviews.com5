@@ -313,16 +313,74 @@ $(document).on('click', '.gallery-image', function(){
     $('.product-detail-image').attr('src', $src);
 })
 function openNav() {
-    $("#side-nav").fadeIn();
-    $('.overlay').show();
-
+    $("#side-nav").css('animation', 'expand 0.3s forwards');
+    $("#nav-close-btn").css('display', 'block');
+    $("#nav-close-btn").css('animation', 'show 0.3s');
+    $(".overlay").css('display', 'block');
+    $(".overlay").css('animation', 'show 0.3s');
   }
   
   function closeNav() {
-    $("#side-nav").fadeOut();
-    $('.overlay').hide();
-    console.log('hello')
+    $("#side-nav").css('animation', 'collapse 0.3s forwards');
+    $("#nav-close-btn").css('animation', 'hide 0.3s');
+    $("#nav-close-btn").css('display', 'none ');
+    $(".overlay").css('animation', 'hide 0.3s');
+    $(".overlay").css('display', 'none');
   }
+let firstDropdownOpen = false;
+function dropdown1(){
+    firstDropdownOpen = !firstDropdownOpen;
+    if(firstDropdownOpen){
+        $('.side-nav-list-dropdown1 i').attr('class', 'fas fa-chevron-up');
+        $('.side-nav-list-dropdown1 div').html('Rút gọn');
+        $('.side-nav-list1').css('display', 'block');
+        $('.side-nav-list1').css('animation', 'expandDropdown 0.3s forwards');
+        $('.side-nav-list1').css('transition', 'height 0.3s');
+        $('.side-nav-list1').css('height', '410px');
+    }else{
+        $('.side-nav-list-dropdown1 i').attr('class', 'fas fa-chevron-down');
+        $('.side-nav-list-dropdown1 div').html('Xem thêm');
+        $('.side-nav-list1').css('animation', 'collapseDropdown 0.2s forwards');
+        $('.side-nav-list1').css('transition', 'height 0.2s');
+        $('.side-nav-list1').css('height', '0px');
+    }
+}
+$('.side-nav-list-see-more').each(function(){
+    $(this).on('click', function(){
+        firstDropdownOpen = !firstDropdownOpen;
+        var department_id = $(this).data('side-nav-department-id');
+        if(firstDropdownOpen) {
+            $(this).children('i').attr('class', 'fas fa-chevron-up');
+            $(this).children('div').html('Rút gọn');
+            $(`ul[data-side-nav-department-id = ${department_id}]`).css('height', 'auto');
+            $(`ul[data-side-nav-department-id = ${department_id}]`).css('animation', 'expandDropdown 0.3s forwards');
+        }else{
+            $(this).children('i').attr('class', 'fas fa-chevron-down');
+            $(this).children('div').html('Xem thêm');
+            $(`ul[data-side-nav-department-id = ${department_id}]`).css('height', '240px');
+            $(`ul[data-side-nav-department-id = ${department_id}]`).css('transition', 'height 0.2s');
+            // $(`ul[data-side-nav-department-id = ${department_id}]`).css('animation', 'collapseDropdown 0.3s forwards');
+        }
+    })
+})
+$('.side-nav-list-item').each(function(){
+    $(this).on('click', function(){
+        var section_id = $(this).data('side-nav-section-id');
+        $('#side-nav-main-container').css('animation', 'mainAway 0.3s forwards');
+        $(`div[data-sub-menu-id = ${section_id}]`).css('animation', 'subBack 0.3s forwards');
+        $(`div[data-sub-menu-id = ${section_id}]`).css('visibility', 'visible');
+    })
+})
+$('.main-menu').each(function(){
+    $(this).on('click', function(){
+        var section_id = $(this).data('nav-section-id');
+        $(`div[data-sub-menu-id = ${section_id}]`).css('animation', 'subPush 0.3s forwards');
+        $(`div[data-sub-menu-id = ${section_id}]`).css('visibility', 'invisible');
+        $('#side-nav-main-container').css('animation', 'mainBack 0.3s forwards');
+    })
+})
+
+
   $(document).on('click', '.heart', function(){
     $(this).css('color', '#D81525');
 })

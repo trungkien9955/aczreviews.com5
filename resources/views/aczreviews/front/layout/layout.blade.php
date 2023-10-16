@@ -21,10 +21,15 @@
     <link rel="icon" type="image/x-icon" href="{{url('aczreviews/front/images/icon_images/logo-icon-2.png')}}">
     <link rel="stylesheet" href="{{url('aczreviews/front/bootstrap-5.0.2-dist/css/bootstrap.min.css')}}"> 
     <title>ACZ Reviews</title>
+    <!-- <style type="text/css">
+@font-face {
+    font-family: 'Amazon Ember';
+    src: url('{{ public_path('aczreviews/front/fonts/amazon_fonts/AmazonEmber.ttf') }}') format('truetype');
+}
+</style> -->
 </head>
 <body>
     <div class="overlay"></div>
-    @include('aczreviews.front.layout.side_menu')
     <header>
     @include('aczreviews.front.layout.header')
     </header>

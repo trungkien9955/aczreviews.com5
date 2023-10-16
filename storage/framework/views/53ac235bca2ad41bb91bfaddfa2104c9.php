@@ -15,6 +15,14 @@
         <div class="container overflow-hidden">
             <div class="products-section-wrapper">
                 <div class="row">
+                    <div class="col-lg-12 col-md-12 col-xs-12">
+                        <div class="home-depa-title">
+                            <a href=""></a><h3>Mỹ phẩm và chăm sóc cơ thể</h3>
+                        </div>
+                        <div class="home-depa-banner">
+                            <img src="<?php echo e(url('aczreviews/front/images/banner_images/home-banner-1.jpg')); ?>" alt="">
+                        </div>
+                    </div>
                     <div class="col-lg-3 col-md-3 col-xs-6">
                         <div class="home-block">
                             <div class="home-block-title">
@@ -71,6 +79,14 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-lg-12 col-md-12 col-xs-12">
+                        <div class="home-depa-title">
+                            <h3>Mỹ phẩm nam</h3>
+                        </div>
+                        <div class="home-depa-banner">
+                            <img src="<?php echo e(url('aczreviews/front/images/banner_images/home-banner-male-beauty.jpg')); ?>" alt="">
+                        </div>
+                    </div>
                     <div class="col-lg-3 col-md-3 col-xs-6">
                         <div class="home-block">
                             <div class="home-block-title">

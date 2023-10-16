@@ -21,10 +21,15 @@
     <link rel="icon" type="image/x-icon" href="<?php echo e(url('aczreviews/front/images/icon_images/logo-icon-2.png')); ?>">
     <link rel="stylesheet" href="<?php echo e(url('aczreviews/front/bootstrap-5.0.2-dist/css/bootstrap.min.css')); ?>"> 
     <title>ACZ Reviews</title>
+    <!-- <style type="text/css">
+@font-face {
+    font-family: 'Amazon Ember';
+    src: url('<?php echo e(public_path('aczreviews/front/fonts/amazon_fonts/AmazonEmber.ttf')); ?>') format('truetype');
+}
+</style> -->
 </head>
 <body>
     <div class="overlay"></div>
-    <?php echo $__env->make('aczreviews.front.layout.side_menu', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <header>
     <?php echo $__env->make('aczreviews.front.layout.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </header>

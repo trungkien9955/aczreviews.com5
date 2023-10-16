@@ -28,6 +28,10 @@
                         <div class="detail-brand">
                             <h6>Thương hiệu: Layali</h6>
                         </div>
+                        <div class="detail-badges">
+                            <img src="<?php echo e(url('aczreviews/front/images/icon_images/amazons-choice.png')); ?>" alt="">
+                            <img src="<?php echo e(url('aczreviews/front/images/icon_images/acz-choice-5.png')); ?>" alt="">
+                        </div>
                         <div class="detail-rating">
                             <span class="rating-score">4</span>
                             <span style = "color:#ffc700; font-size: 24px;">&#9733;</span>
@@ -117,10 +121,43 @@
                             <div class="detail-vendor-inner-wrapper">
                                 <div class="detail-vendor-head">
                                     <div class="detail-vendor-img">
-                                        <img src="<?php echo e(url('aczreviews/front/images/other_images/vendor-1.jpg')); ?>" alt="">
+                                        <img src="<?php echo e(url('aczreviews/front/images/sample_images/vendor-3.png')); ?>" alt="">
                                     </div>
                                     <div class="detail-vendor-name">
-                                        <span title= "name">Vendor 1</span>
+                                        <span title= "name">Chiaki.vn</span>
+                                        <div class="detail-vendor-badges">
+                                        <img src="<?php echo e(url('aczreviews/front/images/icon_images/crown-crop-1.png')); ?>" title = "Bán chạy" alt="">
+                                        <img src="<?php echo e(url('aczreviews/front/images/icon_images/heart-crop-1.png')); ?>" title = "Yêu thích"alt="">
+                                        <img src="<?php echo e(url('aczreviews/front/images/icon_images/sale-crop-1.png')); ?>" title = "Giá thấp nhất" alt="">
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="detail-vendor-info">
+                                    <span class="detail-vendor-address">Hà Nội</span>, <span class="detail-vendor-item-count" style = "color: #e02027">66</span>&nbsp;mặt hàng, Đã bán&nbsp;<span class="detail-vendor-sale-count" style = "color: #e02027"> 351</span>&nbsp;<a href="">Chi tiết</a>
+                                </div>
+                                <div >
+                                    <span class="detail-vendor-price">500,000</span>đ
+                                </div>
+                                <div class="detail-vendor-offer">
+                                    <span>Free ship</span>
+                                    <span>Quà tặng</span>
+                                    <span>Mã giảm giá</span>
+                                </div>
+                            </div>
+                            <div class="detail-vendor-action">
+                                <span ><i class="fa-solid fa-heart heart"></i></span>
+                                <span class = "like"><i class="fa-solid fa-thumbs-up"></i></span>
+                                <span class = "dislike"><i class="fa-solid fa-thumbs-down"></i></span>
+                            </div>
+                        </div>
+                        <div class="detail-vendor-wrapper">
+                            <div class="detail-vendor-inner-wrapper">
+                                <div class="detail-vendor-head">
+                                    <div class="detail-vendor-img">
+                                        <img src="<?php echo e(url('aczreviews/front/images/sample_images/vendor-4.png')); ?>" alt="">
+                                    </div>
+                                    <div class="detail-vendor-name">
+                                        <span title= "name">Hasaki</span>
                                         <div class="detail-vendor-badges">
                                         <img src="<?php echo e(url('aczreviews/front/images/icon_images/crown-crop-1.png')); ?>" title = "Bán chạy" alt="">
                                         <img src="<?php echo e(url('aczreviews/front/images/icon_images/heart-crop-1.png')); ?>" title = "Yêu thích"alt="">

@@ -1,10 +1,15 @@
-
+@font-face {
+    font-family: 'Arial';
+    src: url('fonts/arial.ttf') format('truetype');
+}
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     --primary-color: #131921;
     --primary-color-2: #232f3e;
+    --amazon-color: #232F3E;
+    --amazon-color-2: #F69931;
     --red-color: #e02027;
     --real-red-color: #e02027;
     --color-success: #5CB85C;
@@ -12,7 +17,6 @@
     --color-text: #333333;
     --color-link-hover: #FF0000;
     --color-link-visited: #9900FF;
-
 }
 body {
     outline: 0;
@@ -20,7 +24,7 @@ body {
     position: relative;
     overflow-x: hidden;
     overflow-y: auto;
-    font-family: 'Arial', sans-serif!important;
+    font-family: 'Arial', sans-serif !important;
     background: #f5c9dd;
     color: #333333;
     vertical-align: baseline;

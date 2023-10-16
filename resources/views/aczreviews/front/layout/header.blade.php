@@ -1,4 +1,5 @@
 <!-- valid -->
+@include('aczreviews.front.layout.side_menu')
 <div class="header-section">
     <div class="header-section-second">
         <div class="container-fluid" style = "background-color:inherit;">
@@ -61,26 +62,26 @@
             </div>
         </div>
         <div class="lower-menu-wrapper ">
-                <div class="side-nav-icon" onclick="openNav()">
-                    <img src="{{url('aczreviews/front/images/icon_images/menu-2.png')}}" width= "36" height = "36" alt="">
-                </div>
-                <ul class="lower-menu-list">
-                    <li class="lower-menu-list-item">
-                        <a href="">
-                            <span>Deal hot hôm nay</span>
-                        </a>
-                    </li>
-                    <li class="lower-menu-list-item">
-                        <a href="">
-                            <span>Trending</span>
-                        </a>
-                    </li>
-                    <li class="lower-menu-list-item">
-                        <a href="">
-                            <span>Bán hàng</span>
-                        </a>
-                    </li>
-                </ul>
+            <div class="side-nav-icon" onclick="openNav()">
+                <img src="{{url('aczreviews/front/images/icon_images/menu-2.png')}}" width= "36" height = "36" alt="">
+            </div>
+            <ul class="lower-menu-list">
+                <li class="lower-menu-list-item">
+                    <a href="">
+                        <span>Deal hot hôm nay</span>
+                    </a>
+                </li>
+                <li class="lower-menu-list-item">
+                    <a href="">
+                        <span>Trending</span>
+                    </a>
+                </li>
+                <li class="lower-menu-list-item">
+                    <a href="">
+                        <span>Bán hàng</span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
