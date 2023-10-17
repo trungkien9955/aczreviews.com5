@@ -68,7 +68,7 @@
             <ul class="lower-menu-list">
                 <li class="lower-menu-list-item">
                     <a href="">
-                        <span>Deal hot hôm nay</span>
+                        <span>Deal hot</span>
                     </a>
                 </li>
                 <li class="lower-menu-list-item">

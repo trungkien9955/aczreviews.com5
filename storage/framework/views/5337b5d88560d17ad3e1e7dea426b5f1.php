@@ -41,15 +41,18 @@ use App\Models\aczreviews\Section;
         ?>
         <?php $__currentLoopData = $sections; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $section_for_sub_menu): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <div class="side-nav-sub-container" data-sub-menu-id = "<?php echo e($section_for_sub_menu['id']); ?>">
-            <div class="main-menu" data-nav-section-id = "<?php echo e($section_for_sub_menu['id']); ?>">
-                <i class="fas fa-chevron-right" style = "margin-right: 6px"></i>
-                MAIN MENU
+            <div class="main-menu-back" data-nav-section-id = "<?php echo e($section_for_sub_menu['id']); ?>">
+                <i class="fa-solid fa-arrow-left" style = "margin-right: 6px"></i>
+                MENU CHÍNH
             </div>
             <hr>
             <div class="side-nav-sub-menu">
-                <ul>
+                <div class="side-nav-sub-list-header">
+                    <h5><?php echo e($section_for_sub_menu['section_name']); ?></h5>
+                </div>
+                <ul class = "side-nav-sub-list">
                     <?php $__currentLoopData = $section_for_sub_menu['categories']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <li><?php echo e($category['category_name']); ?></li>
+                    <li class = "side-nav-sub-list-item"><?php echo e($category['category_name']); ?></li>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </ul>
             </div>

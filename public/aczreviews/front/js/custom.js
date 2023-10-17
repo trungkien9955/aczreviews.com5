@@ -371,7 +371,7 @@ $('.side-nav-list-item').each(function(){
         $(`div[data-sub-menu-id = ${section_id}]`).css('visibility', 'visible');
     })
 })
-$('.main-menu').each(function(){
+$('.main-menu-back').each(function(){
     $(this).on('click', function(){
         var section_id = $(this).data('nav-section-id');
         $(`div[data-sub-menu-id = ${section_id}]`).css('animation', 'subPush 0.3s forwards');

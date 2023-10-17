@@ -41,15 +41,18 @@ use App\Models\aczreviews\Section;
         ?>
         @foreach($sections as $section_for_sub_menu)
         <div class="side-nav-sub-container" data-sub-menu-id = "{{$section_for_sub_menu['id']}}">
-            <div class="main-menu" data-nav-section-id = "{{$section_for_sub_menu['id']}}">
-                <i class="fas fa-chevron-right" style = "margin-right: 6px"></i>
-                MAIN MENU
+            <div class="main-menu-back" data-nav-section-id = "{{$section_for_sub_menu['id']}}">
+                <i class="fa-solid fa-arrow-left" style = "margin-right: 6px"></i>
+                MENU CHÍNH
             </div>
             <hr>
             <div class="side-nav-sub-menu">
-                <ul>
+                <div class="side-nav-sub-list-header">
+                    <h5>{{$section_for_sub_menu['section_name']}}</h5>
+                </div>
+                <ul class = "side-nav-sub-list">
                     @foreach($section_for_sub_menu['categories'] as $category)
-                    <li>{{$category['category_name']}}</li>
+                    <li class = "side-nav-sub-list-item">{{$category['category_name']}}</li>
                     @endforeach
                 </ul>
             </div>
