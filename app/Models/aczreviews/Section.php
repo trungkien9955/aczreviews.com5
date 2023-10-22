@@ -11,4 +11,7 @@ class Section extends Model
     public function categories(){
         return $this->hasMany('App\Models\aczreviews\Category', 'section_id');
     }
+    public function department(){
+        return $this->belongsTo('App\Models\aczreviews\Department', 'department_id');
+    }
 }

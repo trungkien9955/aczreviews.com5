@@ -355,7 +355,7 @@ footer {
   }
   .home-department-banner img {
     width: 100%; 
-    max-height: 360px;
+    /* max-height: 360px; */
   }
   .side-nav-list-see-more {
     display: flex;
@@ -534,6 +534,9 @@ footer {
 }
 /* main-section starts */
 /* products-section starts */
+.banner-section {
+    margin-top: 24px;
+}
 .home-department-wrapper {
     margin-bottom:36px;
 }

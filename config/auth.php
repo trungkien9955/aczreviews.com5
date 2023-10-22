@@ -70,7 +70,7 @@ return [
         ],
         'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Models\FlowerShop\Admin\Admin::class,
+            'model' => App\Models\aczreviews\admin\Admin::class,
         ],
 
 

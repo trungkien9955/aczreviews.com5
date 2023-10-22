@@ -5,8 +5,8 @@
         <div class="container overflow-hidden">
             <div class="home-banner">
                 <div class="home-banner-wrapper owl-carousel owl-carousel-home-banners">
-                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-1.jpg')); ?>" alt="">
-                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-2.jpg')); ?>" alt="">
+                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-derma-2.png')); ?>" alt="">
+                    <img src="<?php echo e(url('aczreviews/front/images/banner_images/home-banner-3.png')); ?>" alt="">
                 </div>
             </div>
         </div>
@@ -19,7 +19,7 @@
                         <a href=""></a><h3>Mỹ phẩm và chăm sóc cơ thể</h3>
                     </div>
                     <div class="home-department-banner">
-                        <img src="<?php echo e(url('aczreviews/front/images/banner_images/home-banner-1.jpg')); ?>" alt="">
+                        <img src="<?php echo e(url('aczreviews/front/images/banner_images/lipstick-banner-2.png')); ?>" alt="">
                     </div>
                     <div class="home-department-content">
                         <div class="row gy-2">
@@ -152,7 +152,7 @@
                         <a href=""></a><h3>Mỹ phẩm nam</h3>
                     </div>
                     <div class="home-department-banner">
-                        <img src="<?php echo e(url('aczreviews/front/images/banner_images/men-beauty-banner-1.jpg')); ?>" alt="">
+                        <img src="<?php echo e(url('aczreviews/front/images/banner_images/men-beauty-banner-4.png')); ?>" alt="">
                     </div>
                     <div class="home-department-content">
                         <div class="row gy-2">
@@ -296,7 +296,7 @@
                         <a href=""></a><h3>Thực phẩm chức năng</h3>
                     </div>
                     <div class="home-department-banner">
-                        <img src="<?php echo e(url('aczreviews/front/images/banner_images/supplements-banner-2.png')); ?>" alt="">
+                        <img src="<?php echo e(url('aczreviews/front/images/banner_images/supplements-banner.png')); ?>" alt="">
                     </div>
                     <div class="home-department-content">
                         <div class="row gy-2">
@@ -392,7 +392,7 @@
                         <a href=""></a><h3>Vitamins/Khoáng chất</h3>
                     </div>
                     <div class="home-department-banner">
-                        <img src="<?php echo e(url('aczreviews/front/images/banner_images/vitamins-banner.png')); ?>" alt="">
+                        <img src="<?php echo e(url('aczreviews/front/images/banner_images/vitamins-banner-8.png')); ?>" alt="">
                     </div>
                     <div class="home-department-content">
                         <div class="row gy-2">
@@ -488,38 +488,34 @@
                         <a href=""></a><h3>Dinh dưỡng thể thao</h3>
                     </div>
                     <div class="home-department-banner">
-                        <img src="<?php echo e(url('aczreviews/front/images/banner_images/sport-banner-2.jpg')); ?>" alt="">
+                        <img src="<?php echo e(url('aczreviews/front/images/banner_images/sport-banner-2.png')); ?>" alt="">
                     </div>
                     <div class="home-department-content">
-                        <div class="row gy-2">
-                            <div class="col-lg-4 col-md-4 col-xs-12">
-                                <a href="">
-                                    <div class="home-block-sport">
-                                        <div class="home-block-sport-inner-wrapper">
-                                            <div class="home-block-icon-sport">
-                                            <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-sport-item.png')); ?>" alt="">
-                                            </div>
-                                            <div class="home-block-title-sport">
-                                                <span>Whey protein</span>
-                                            </div>
+                        <div class="owl-carousel owl-carousel-home-sports-banner">
+                            <a href="">
+                                <div class="home-block-sport">
+                                    <div class="home-block-sport-inner-wrapper">
+                                        <div class="home-block-icon-sport">
+                                        <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-sport-item.png')); ?>" alt="">
+                                        </div>
+                                        <div class="home-block-title-sport">
+                                            <span>Whey protein</span>
                                         </div>
                                     </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-xs-12">
-                                <a href="">
-                                    <div class="home-block-sport">
-                                        <div class="home-block-sport-inner-wrapper">
-                                            <div class="home-block-icon-sport">
-                                            <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-sport-item-2.png')); ?>" alt="">
-                                            </div>
-                                            <div class="home-block-title-sport">
-                                                <span>Sản phẩm hỗ trợ tăng cân</span>
-                                            </div>
+                                </div>
+                            </a>
+                            <a href="">
+                                <div class="home-block-sport">
+                                    <div class="home-block-sport-inner-wrapper">
+                                        <div class="home-block-icon-sport">
+                                        <img src="<?php echo e(url('aczreviews/front/images/banner_images/banner-sport-item-2.png')); ?>" alt="">
+                                        </div>
+                                        <div class="home-block-title-sport">
+                                            <span>Whey protein</span>
                                         </div>
                                     </div>
-                                </a>
-                            </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>

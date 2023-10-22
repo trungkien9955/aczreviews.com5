@@ -1,0 +1,64 @@
+@font-face {
+    font-family: 'Arial';
+    src: url('fonts/arial.ttf') format('truetype');
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    --primary-color: #131921;
+    --primary-color-2: #232f3e;
+    --amazon-color: #232F3E;
+    --amazon-color-2: #F69931;
+    --red-color: #e02027;
+    --real-red-color: #e02027;
+    --color-success: #5CB85C;
+    --color-primary: #0d6efd;
+    --color-text: #333333;
+    --color-link-hover: #FF0000;
+    --color-link-visited: #9900FF;
+}
+body {
+    outline: 0;
+    font-size: 14px;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-family: 'Arial', sans-serif !important;
+    color: #333333;
+    vertical-align: baseline;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+a {
+    text-decoration: none !important; 
+    color: inherit !important;
+}
+
+img {
+    border: none;
+    max-width: 100%;
+    height: auto;
+}
+.fa {
+    display: inline-block;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.breadcrumb li a {
+    text-decoration: none;
+}
