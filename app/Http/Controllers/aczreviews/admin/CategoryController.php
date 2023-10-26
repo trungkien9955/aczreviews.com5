@@ -54,6 +54,12 @@ class CategoryController extends Controller
         }
         return view('aczreviews.admin.categories.add_edit_categories')->with(compact('title', 'category', 'departments'));
      }
+     public function delete_category(Request $request){
+        $data = $request->all();
+        $title = $data['title'];
+        Category::where('id', $data['model_id'])->delete();
+        return response()->json(['success_message'=> 'Đã xóa '.$title.'!']);
+    }
      public function get_sections_after_department_selection(Request $request) {
         if($request->ajax()){
             $data=$request->all();

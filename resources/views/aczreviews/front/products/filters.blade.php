@@ -1,7 +1,5 @@
 <?php
-use App\Models\FlowerShop\ProductFilter;
-$filters = ProductFilter::filters();
-// dd($filters);
+use App\Models\aczreviews\ProductFilter;
 ?>
 <div class="col-lg-3">
     <div class="filter-wrapper">
@@ -23,7 +21,7 @@ $filters = ProductFilter::filters();
             </form>
         </div>
         <?php
-        $brands = ProductFilter::brands($section['url']);
+        $brands = ProductFilter::get_brands($category['url']);
         ?>
         @if(count($brands)>0)
         <div class="filter-item">
@@ -41,7 +39,7 @@ $filters = ProductFilter::filters();
         </div>
         @endif
         <?php
-        $sizes = ProductFilter::sizes($section['url']);
+        $sizes = ProductFilter::get_sizes($category['url']);
         ?>
         @if(count($sizes)>0)
         <div class="filter-item">
@@ -59,7 +57,7 @@ $filters = ProductFilter::filters();
         </div>
         @endif
         <?php
-        $colors = ProductFilter::colors($section['url']);
+        $colors = ProductFilter::get_colors($category['url']);
         ?>
         @if(count($colors)>0)
         <div class="filter-item">
@@ -76,25 +74,5 @@ $filters = ProductFilter::filters();
             </form>
         </div>
         @endif
-        <!-- <div class="filter-item">
-            @foreach($filters as $filter)
-            <?php
-                $is_available = ProductFilter::available_filters($section['url'], $filter['id']);
-            ?>
-            @if($is_available == "Yes")
-            <span style = "font-weight:bold;">{{$filter['filter_name']}}</span>
-            <form action="" method = "post">
-                @foreach($filter['filter_values'] as $key => $filter_value)
-                <div class="form-check">
-                    <input class="form-check-input {{$filter['filter_column']}}" type="checkbox" value="{{$filter_value['filter_value']}}" id="{{$filter['filter_column']}}{{$key}}">
-                    <label class="form-check-label" for="{{$filter['filter_column']}}{{$key}}">
-                    {{$filter_value['filter_value']}}
-                    </label>
-                </div>
-                @endforeach
-            </form>
-            @endif
-            @endforeach
-        </div> -->
     </div>
 </div>

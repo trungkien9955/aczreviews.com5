@@ -52,7 +52,7 @@ use App\Models\aczreviews\Section;
                 </div>
                 <ul class = "side-nav-sub-list">
                     @foreach($section_for_sub_menu['categories'] as $category)
-                    <li class = "side-nav-sub-list-item">{{$category['category_name']}}</li>
+                    <li class = "side-nav-sub-list-item"><a href="{{url($category['url'])}}">{{$category['category_name']}}</a></li>
                     @endforeach
                 </ul>
             </div>

@@ -48,6 +48,9 @@ class DatabaseSeeder extends Seeder
         // $this->call(CategoriesTableSeeder::class);
         // $this->call(VendorsTableSeeder::class);
         // $this->call(aczProductsTableSeeder::class);
-        $this->call(AdminsTableSeeder::class);
+        // $this->call(AdminsTableSeeder::class);
+        // $this->call(GuestRatingInfoTableSeeder::class);
+        // $this->call(ProductVersionsTableSeeder::class);
+        $this->call(aczBrandsTableSeeder::class);
     }
 }

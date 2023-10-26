@@ -44,7 +44,7 @@ use App\Models\aczreviews\Section;
                     </a>
                 </li>
                 <li class="side-nav-list-item" >
-                    <a href="javascript:void(0);" >
+                    <a href="/admin/products" >
                     <span>Sản phẩm</span>
                     </a>
                 </li>

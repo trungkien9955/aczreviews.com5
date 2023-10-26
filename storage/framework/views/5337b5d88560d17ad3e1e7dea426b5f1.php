@@ -52,7 +52,7 @@ use App\Models\aczreviews\Section;
                 </div>
                 <ul class = "side-nav-sub-list">
                     <?php $__currentLoopData = $section_for_sub_menu['categories']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <li class = "side-nav-sub-list-item"><?php echo e($category['category_name']); ?></li>
+                    <li class = "side-nav-sub-list-item"><a href="<?php echo e(url($category['url'])); ?>"><?php echo e($category['category_name']); ?></a></li>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </ul>
             </div>

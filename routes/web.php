@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\aczreviews\Category;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,6 +42,15 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\aczreviews\admin')->gro
         Route::post('update-category-status', 'CategoryController@update_category_status');
         Route::match(['get', 'post'],'add-edit-categories/{id?}', 'CategoryController@add_edit_categories');
         Route::post('get-sections-after-department-selection', 'CategoryController@get_sections_after_department_selection');
+        Route::post('delete-Category/{id}', 'CategoryController@delete_category');
+        //products
+        Route::get('products', 'ProductController@products');
+        Route::post('update-product-status', 'ProductController@update_product_status');
+        Route::match(['get', 'post'],'add-edit-products/{id?}', 'ProductController@add_edit_products');
+        Route::post('update-product-feature-status', 'ProductController@update_product_feature_status');
+        Route::post('update-product-versions-status', 'ProductController@update_product_versions_status');
+        Route::post('get-categories-after-section-selection', 'ProductController@get_categories_after_section_selection');
+        Route::post('delete-Product/{id}', 'ProductController@delete_product');
 
     });
     Route::get('/back', 'ProductController@detail');
@@ -49,4 +60,9 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\aczreviews\admin')->gro
 
 Route::namespace('App\Http\Controllers\aczreviews\front')->group(function(){
     Route::match(['get', 'post'],'/', 'IndexController@index');
+    $category_url = Category::select('url')->where('status', 1)->get()->pluck('url')->toArray();
+    // dd($section_url); 
+    foreach($category_url as $key => $url) {
+        Route::match(['get', 'post'],'/'.$url, 'ProductController@listing');
+    }
 });

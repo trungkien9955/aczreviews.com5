@@ -2,8 +2,8 @@
 use App\Models\aczreviews\ProductVersion ;
 use App\Models\aczreviews\Product;
 ?>
-@extends('aczreviews.front.layout.layout')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <div class="listing-section mb-3">
     <div class="container overflow-hidden">
         <div class="row mt-1">
@@ -20,7 +20,7 @@ use App\Models\aczreviews\Product;
         <div class="row mt-1">
             <div class="col">
                 <div class="listing-title">
-                    <h3><span>{{$category['category_name']}}</span>&nbsp;(<span>{{$count}}</span>&nbsp;sản phẩm)</h3>
+                    <h3><span><?php echo e($category['category_name']); ?></span>&nbsp;(<span><?php echo e($count); ?></span>&nbsp;sản phẩm)</h3>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@ use App\Models\aczreviews\Product;
                 <div class="sorter-wrapper clearfix">
                     <div class="sorter w-20" >
                         <form action="" name = "sorter">
-                            <input type="hidden" name = "url" id= "url" value = {{$url}}>
+                            <input type="hidden" name = "url" id= "url" value = <?php echo e($url); ?>>
                             <div class="form-group">
                                 <select name="sorter" id="sorter" class = "form-control" method = "GET">
                                     <option value="">Sắp xếp</option>
@@ -43,19 +43,19 @@ use App\Models\aczreviews\Product;
             </div>
         </div>
         <div class="row">
-        @include('aczreviews.front.products.filters')
+        <?php echo $__env->make('aczreviews.front.products.filters', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <div class="col-lg-9">
                 <div class="row gy-2 filter-products-container">
-                    @foreach($products as $product)
+                    <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-lg-3 col-md-4 col-xs-2">
                         <div class="item m-auto">
-                            <a href="{{url('/product/'.$product['id'])}}" class="item-image-wrapper">
+                            <a href="<?php echo e(url('/product/'.$product['id'])); ?>" class="item-image-wrapper">
                                 <div class="item-image">
-                                    <img  src="{{url('aczreviews/front/images/product_images/medium/'.$product['image'])}}" alt="">
+                                    <img  src="<?php echo e(url('aczreviews/front/images/product_images/medium/'.$product['image'])); ?>" alt="">
                                 </div>
                             </a>
                             <div class="item-details mt-2">
-                            <h3 class="item-name">{{$product['name']}}</h3>
+                            <h3 class="item-name"><?php echo e($product['name']); ?></h3>
                             <div class="">
                             <?php 
                                 $rating_info = Product::get_rating($product['id']);
@@ -80,21 +80,22 @@ use App\Models\aczreviews\Product;
                                 }
                             ?>
                             </div>
-                            <p class="item-desc"><strong>Mã:</strong> {{$product['code']}}</p>
-                                @if($product['has_versions']=='no')
+                            <p class="item-desc"><strong>Mã:</strong> <?php echo e($product['code']); ?></p>
+                                <?php if($product['has_versions']=='no'): ?>
                                     <span ><strong>Giá:</strong> <span class="home-item-price"><?php echo number_format($product['price'])?>đ</span></span>
-                                    @else
+                                    <?php else: ?>
                                     <?php $version_with_lowest_price = ProductVersion::get_version_with_lowest_price($product['id'])?>
                                     <span ><strong>Giá:</strong> <span class="home-item-price"><?php echo number_format($version_with_lowest_price['price'])?>đ</span></span>
 
-                                    @endif
+                                    <?php endif; ?>
                         </div>
                         </div>
                     </div>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('aczreviews.front.layout.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\aczreviews\resources\views/aczreviews/front/products/listing.blade.php ENDPATH**/ ?>

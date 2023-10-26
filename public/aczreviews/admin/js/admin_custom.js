@@ -2,7 +2,7 @@ $(document).ready(function(){
     $('#departments').DataTable();
     $('#sections').DataTable();
     $('#categories').DataTable();
-
+    $('#products').DataTable();
 })
 $(document).on("click", ".update_department_status", function() {
     var status = $(this).children("i").attr("status");
@@ -79,6 +79,81 @@ $(document).on("click", ".update_category_status", function() {
         }
     })
 })
+$(document).on("click", ".update_product_status", function() {
+    var status = $(this).children("i").attr("status");
+    var product_id = $(this).data("product-id");
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: 'post',
+        url: '/admin/update-product-status',
+        data: {status:status, product_id:product_id},
+        success:function(resp){
+            $("#ajax_loading_overlay").fadeOut(300);
+            if(resp["status"]==0){
+                $(`a[data-product-id= ${resp.product_id}]`).html('<i style = "font-size:24px; color: red;"class = "fa-solid fa-circle-xmark" status = "inactive"></i>');
+            }
+            else if(resp["status"]==1){
+                $(`a[data-product-id= ${resp.product_id}]`).html('<i style = "font-size:24px; color: green;" class="fa-solid fa-circle-check" status = "active"></i>');
+            }
+        },
+        error:function(){
+        $("#ajax_loading_overlay").fadeOut(300);
+            alert("Error");
+        }
+    })
+})
+$(document).on("click", ".update_product_feature_status", function() {
+    var status = $(this).children("i").attr("status");
+    var product_id = $(this).data("feature-product-id");
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: 'post',
+        url: '/admin/update-product-feature-status',
+        data: {status:status, product_id:product_id},
+        success:function(resp){
+            $("#ajax_loading_overlay").fadeOut(300);
+            if(resp["status"]=="no"){
+                $(`a[data-feature-product-id= ${resp.product_id}]`).html('<i style = "font-size:24px; color: red;"class = "fa-solid fa-circle-xmark" status = "no"></i>');
+            }
+            else if(resp["status"]=="yes"){
+                $(`a[data-feature-product-id= ${resp.product_id}]`).html('<i style = "font-size:24px; color: green;" class="fa-solid fa-circle-check" status = "yes"></i>');
+            }
+        },
+        error:function(){
+        $("#ajax_loading_overlay").fadeOut(300);
+            alert("Error");
+        }
+    })
+})
+$(document).on("click", ".update_product_versions_status", function() {
+    var status = $(this).children("i").attr("status");
+    var product_id = $(this).data("versions-product-id");
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: 'post',
+        url: '/admin/update-product-versions-status',
+        data: {status:status, product_id:product_id},
+        success:function(resp){
+            $("#ajax_loading_overlay").fadeOut(300);
+            if(resp["status"]=="no"){
+                $(`a[data-versions-product-id= ${resp.product_id}]`).html('<i style = "font-size:24px; color: red;"class = "fa-solid fa-circle-xmark" status = "no"></i>');
+            }
+            else if(resp["status"]=="yes"){
+                $(`a[data-versions-product-id= ${resp.product_id}]`).html('<i style = "font-size:24px; color: green;" class="fa-solid fa-circle-check" status = "yes"></i>');
+            }
+        },
+        error:function(){
+        $("#ajax_loading_overlay").fadeOut(300);
+            alert("Error");
+        }
+    })
+})
 $(document).on("click", ".confirm_delete", function() {
     var title = $(this).data("title");
     if(confirm('Bạn có muốn xóa '+ title + ' này?')) {
@@ -118,8 +193,36 @@ $(document).ready(function(){
             data: {department_id:department_id},
             success:function(resp){
                 $("#ajax_loading_overlay").fadeOut(300);
+                $('#section-selection option').remove();
+                $('#section-selection').append('<option value = "">--Chọn</option>');
                 $.each(resp, function(i){
-                    $('#section-selection').append(`<option value = "${resp[i].id}">${resp[i].section_name}</option>`)
+                    $('#section-selection').append(`<option value = "${resp[i].id}">${resp[i].section_name}</option>`);
+                })
+            },
+            error:function(){
+            $("#ajax_loading_overlay").fadeOut(300);
+                alert("Error");
+            }
+        })
+        // alert(department_id);
+    })
+})
+$(document).ready(function(){
+    $('#section-selection').on('change', function(){
+        var section_id = $('#section-selection option:selected').val();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'post',
+            url: '/admin/get-categories-after-section-selection',
+            data: {section_id:section_id},
+            success:function(resp){
+                $("#ajax_loading_overlay").fadeOut(300);
+                $('#category-selection option').remove();
+                $('#category-selection').append(`<option value = "">Chọn</option>`)
+                $.each(resp, function(i){
+                    $('#category-selection').append(`<option value = "${resp[i].id}">${resp[i].category_name}</option>`)
                 })
             },
             error:function(){

@@ -64,7 +64,7 @@
                                 </td>
                                 <td>
                                 <a href="{{url('/admin/add-edit-categories/'.$category['id'])}}" class = "admin-edit-btn">Chỉnh sửa</a>
-                                <a data-title = "Danh mục cấp 2" class = "confirm_delete admin-delete-btn" data-model = "Category" data-model-url = "categories" data-model-id = "{{$category['id']}}" href="javascript:void(0)">Xóa</a>
+                                <a data-title = "Danh mục cấp 3" class = "confirm_delete admin-delete-btn" data-model = "Category" data-model-url = "categories" data-model-id = "{{$category['id']}}" href="javascript:void(0)">Xóa</a>
                                 </td>
                             </tr>
                             @endforeach
