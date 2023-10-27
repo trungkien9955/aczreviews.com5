@@ -55,40 +55,40 @@ use App\Models\aczreviews\Product;
                                 </div>
                             </a>
                             <div class="item-details mt-2">
-                            <h3 class="item-name"><?php echo e($product['name']); ?></h3>
-                            <div class="">
-                            <?php 
-                                $rating_info = Product::get_rating($product['id']);
-                                $is_rated = $rating_info['is_rated'];
-                                if($is_rated=="no"){
-                                    $count = 5;
-                                    while($count>0) {
-                                        echo '<span style = "color:#ccc; font-size: 24px;">&#9733;</span>';
-                                        $count--;
-                                    }
-                                }else{
-                                    $count = 0;
-                                    $total_count = 5- $rating_info['product_rating'];
-                                    while($count< $rating_info['product_rating']) {
-                                        echo '<span style = "color:#ffc700; font-size: 24px;">&#9733;</span>';
-                                        $count++;
-                                    }
-                                    while($total_count>0) {
-                                        echo '<span style = "color:#ccc; font-size: 24px;">&#9733;</span>';
-                                        $total_count--;
-                                    }
-                                }
-                            ?>
-                            </div>
-                            <p class="item-desc"><strong>Mã:</strong> <?php echo e($product['code']); ?></p>
+                                <div class="item-name"><?php echo e($product['name']); ?></div>
+                                <div class="">
+                                    <?php 
+                                        $rating_info = Product::get_rating($product['id']);
+                                        $is_rated = $rating_info['is_rated'];
+                                        if($is_rated=="no"){
+                                            $count = 5;
+                                            while($count>0) {
+                                                echo '<span style = "color:#ccc; font-size: 24px;">&#9733;</span>';
+                                                $count--;
+                                            }
+                                        }else{
+                                            $count = 0;
+                                            $total_count = 5- $rating_info['product_rating'];
+                                            while($count< $rating_info['product_rating']) {
+                                                echo '<span style = "color:#ffc700; font-size: 24px;">&#9733;</span>';
+                                                $count++;
+                                            }
+                                            while($total_count>0) {
+                                                echo '<span style = "color:#ccc; font-size: 24px;">&#9733;</span>';
+                                                $total_count--;
+                                            }
+                                        }
+                                    ?>
+                                    <span class="item-rating-count"><?php echo e($rating_info['product_rating_count']); ?></span>
+                                </div>
+                                <p class="item-desc"><strong>Mã:</strong> <?php echo e($product['code']); ?></p>
                                 <?php if($product['has_versions']=='no'): ?>
-                                    <span ><strong>Giá:</strong> <span class="home-item-price"><?php echo number_format($product['price'])?>đ</span></span>
+                                    <span ><strong>Giá thấp nhất:</strong></span> <span class="item-price"><?php echo number_format($product['price'])?></span>đ
                                     <?php else: ?>
                                     <?php $version_with_lowest_price = ProductVersion::get_version_with_lowest_price($product['id'])?>
-                                    <span ><strong>Giá:</strong> <span class="home-item-price"><?php echo number_format($version_with_lowest_price['price'])?>đ</span></span>
-
-                                    <?php endif; ?>
-                        </div>
+                                    <span ><strong>Giá thấp nhất:</strong> <span class="item-price"><?php echo number_format($version_with_lowest_price['price'])?></span>đ</span>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

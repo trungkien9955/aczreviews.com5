@@ -75,6 +75,10 @@ use App\Models\aczreviews\Product;
                     <input type="text" class="form-control" name = "color" @if(!empty($product['color'])) value = "{{$product['color']}}" @else value = "{{old('color')}}" @endif >
                     </div>
                     <div class="form-group">
+                    <label for="size">Size</label>
+                    <input type="text" class="form-control" name = "size" @if(!empty($product['size'])) value = "{{$product['size']}}" @else value = "{{old('size')}}" @endif >
+                    </div>
+                    <div class="form-group">
                     <label for="color">Giá</label>
                     <input type="text" class="form-control" name = "price" @if(!empty($product['price'])) value = "{{$product['price']}}" @else value = "{{old('price')}}" @endif required>
                     </div>

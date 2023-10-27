@@ -83,7 +83,8 @@
                                     @endif 
                                 </td>
                                 <td>
-                                <a href="{{url('/admin/add-edit-products/'.$product['id'])}}" class = "admin-edit-btn">Chỉnh sửa</a>
+                                <a href="{{url('/admin/add-edit-products/'.$product['id'])}}" class = "admin-edit-btn">Sửa</a>
+                                <a href="{{url('/admin/add-images/'.$product['id'])}}" class = "admin-edit-btn">Thêm hình ảnh</a>
                                 <a data-title = "Sản phẩm" class = "confirm_delete admin-delete-btn" data-model = "Product" data-model-url = "products" data-model-id = "{{$product['id']}}" href="javascript:void(0)">Xóa</a>
                                 </td>
                             </tr>

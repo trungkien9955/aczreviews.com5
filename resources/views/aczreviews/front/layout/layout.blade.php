@@ -65,5 +65,6 @@
         });
         });
     </script>
+    @include('aczreviews.front.layout.scripts')
 </body>
 </html>

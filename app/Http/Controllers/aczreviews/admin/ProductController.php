@@ -8,6 +8,7 @@ use App\Models\aczreviews\Section;
 use App\Models\aczreviews\Department;
 use App\Models\aczreviews\Category;
 use App\Models\aczreviews\Product;
+use App\Models\aczreviews\ProductImage;
 use Validator;
 use Image;
 class ProductController extends Controller
@@ -43,7 +44,7 @@ class ProductController extends Controller
         }
         if($request->isMethod('post')){
          $data = $request->all();
-         $validator= Validator::make( $data, $rules = ['name' => 'required|regex:/^([a-zA-Z0-9_\-,;&ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i'], $messages = ['name.required' => 'Bạn cần nhập tên!', 'name.regex'=>'Tên không hợp lệ'])->validate();
+         $validator= Validator::make( $data, $rules = ['name' => 'required|regex:/^([a-zA-Z0-9_\-,;&\(\)ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i'], $messages = ['name.required' => 'Bạn cần nhập tên!', 'name.regex'=>'Tên không hợp lệ'])->validate();
          if($request->hasFile('image')){
             $image_tmp = $request->file('image');
             if($image_tmp->isValid()) {
@@ -65,6 +66,7 @@ class ProductController extends Controller
          $product->name = $data['name'];
          $product->code = $data['code'];
          $product->color = $data['color'];
+         $product->size = $data['size'];
          $product->price = $data['price'];
          $product->discount = $data['discount'];
          $product->description = $data['description'];
@@ -84,6 +86,33 @@ class ProductController extends Controller
         }
         return view('aczreviews.admin.products.add_edit_products')->with(compact('title', 'product', 'departments'));
      }
+     public function add_images(Request $request, $id){
+        $product_details = Product::with('images')->find($id);
+        if($request->isMethod('post')){
+            if($request->hasFile('images')){
+                $product_id_for_image_name = $request['product_id_for_image_name'];
+                $images = $request->file('images');
+                foreach($images as $key=>$image){
+                    $image_tmp = Image::make($image);
+                    $image_original_name = $image->getClientOriginalName();
+                    $extension = $image->getClientOriginalExtension();
+                    $image_name = $product_id_for_image_name.rand(111, 9999).'.'.$extension;
+                    $medium_image_path = 'aczreviews/front/images/gal_images/medium/'.$image_name;
+                    $small_image_path = 'aczreviews/front/images/gal_images/small/'.$image_name;
+                    Image::make($image_tmp)->resize(500, 500)->save($medium_image_path);
+                    Image::make($image_tmp)->resize(300, 300)->save($small_image_path);
+                    //add images to db
+                    $image = new ProductImage;
+                    $image->product_id = $id;
+                    $image->image = $image_name;
+                    $image->status = 1;
+                    $image->save();
+                }
+            }
+            return redirect()->back()->with('success_message', 'Đã thêm hình ảnh sản phẩm!');
+        }
+        return view('aczreviews/admin.product_images.add_edit_images', compact('product_details'));
+    }
      public function delete_product(Request $request){
         $data = $request->all();
         $title = $data['title'];

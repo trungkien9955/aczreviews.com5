@@ -17,6 +17,12 @@ class Product extends Model
     public function category(){
         return $this->belongsTo('App\Models\aczreviews\Category', 'category_id');
     }
+    public function brand(){
+        return $this->belongsTo('App\Models\aczreviews\Brand', 'brand_id');
+    }
+    public function images(){
+        return $this->hasMany('App\Models\aczreviews\ProductImage', 'product_id');
+    }
     public static function get_guest_rating($id){
         $product_rating_count =GuestRatingInfo::where('product_id', $id)->count();
         if($product_rating_count==0){
@@ -36,7 +42,7 @@ class Product extends Model
         $product_rating_count =GuestRatingInfo::where('product_id', $id)->count();
         if($product_rating_count==0){
             $is_rated = "no";
-            return array('is_rated'=> $is_rated);
+            return array('is_rated'=> $is_rated, 'product_rating_count'=> $product_rating_count,);
         }else{
             $is_rated = "yes";
             $rating_info = GuestRatingInfo::where('product_id', $id)->get()->toArray();

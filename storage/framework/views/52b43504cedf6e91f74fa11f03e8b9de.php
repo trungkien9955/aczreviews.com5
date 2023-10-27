@@ -65,5 +65,6 @@
         });
         });
     </script>
+    <?php echo $__env->make('aczreviews.front.layout.scripts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </body>
 </html><?php /**PATH C:\xampp\htdocs\aczreviews\resources\views/aczreviews/front/layout/layout.blade.php ENDPATH**/ ?>

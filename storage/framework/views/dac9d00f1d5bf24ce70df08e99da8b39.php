@@ -76,6 +76,10 @@ use App\Models\aczreviews\Product;
                     <input type="text" class="form-control" name = "color" <?php if(!empty($product['color'])): ?> value = "<?php echo e($product['color']); ?>" <?php else: ?> value = "<?php echo e(old('color')); ?>" <?php endif; ?> >
                     </div>
                     <div class="form-group">
+                    <label for="size">Size</label>
+                    <input type="text" class="form-control" name = "size" <?php if(!empty($product['size'])): ?> value = "<?php echo e($product['size']); ?>" <?php else: ?> value = "<?php echo e(old('size')); ?>" <?php endif; ?> >
+                    </div>
+                    <div class="form-group">
                     <label for="color">Giá</label>
                     <input type="text" class="form-control" name = "price" <?php if(!empty($product['price'])): ?> value = "<?php echo e($product['price']); ?>" <?php else: ?> value = "<?php echo e(old('price')); ?>" <?php endif; ?> required>
                     </div>

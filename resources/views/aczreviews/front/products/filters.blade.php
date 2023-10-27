@@ -5,7 +5,7 @@ use App\Models\aczreviews\ProductFilter;
     <div class="filter-wrapper">
         <span style = "font-weight:bold; font-size = 18px;" >Bộ lọc</span>
         <?php
-        $prices = array('0-100000', '100000-200000', '200000-500000', '500000-1000000')
+        $prices = array('0-100000', '100000-200000', '200000-500000', '500000-1000000', '1000000-2000000', '2000000-5000000', '5000000-10000000')
         ?>
         <div class="filter-item">
             <span style = "font-weight:bold;">Giá</span>
@@ -14,7 +14,12 @@ use App\Models\aczreviews\ProductFilter;
                 <div class="form-check">
                     <input class="form-check-input price" type="checkbox" value="{{$price}}" id="price{{$key}}">
                     <label class="form-check-label" for="price{{$key}}">
-                    {{$price}}
+                   @php 
+                   $price_item = explode('-', $price);
+                   $price_item_1 = number_format(floatval($price_item[0]));
+                   $price_item_2 = number_format(floatval($price_item[1]));
+                   @endphp
+                   {{$price_item_1}}đ - {{$price_item_2}}đ
                     </label>
                 </div>
                 @endforeach
@@ -25,7 +30,7 @@ use App\Models\aczreviews\ProductFilter;
         ?>
         @if(count($brands)>0)
         <div class="filter-item">
-            <span style = "font-weight:bold;">Nhãn hiệu</span>
+            <span style = "font-weight:bold;">Thương hiệu</span>
             <form action="" method = "post">
                 @foreach($brands as $key => $brand)
                 <div class="form-check">

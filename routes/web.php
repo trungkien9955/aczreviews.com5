@@ -51,7 +51,8 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\aczreviews\admin')->gro
         Route::post('update-product-versions-status', 'ProductController@update_product_versions_status');
         Route::post('get-categories-after-section-selection', 'ProductController@get_categories_after_section_selection');
         Route::post('delete-Product/{id}', 'ProductController@delete_product');
-
+        //product_images
+        Route::match(['get', 'post'], 'add-images/{id}', 'ProductController@add_images');
     });
     Route::get('/back', 'ProductController@detail');
 
@@ -65,4 +66,6 @@ Route::namespace('App\Http\Controllers\aczreviews\front')->group(function(){
     foreach($category_url as $key => $url) {
         Route::match(['get', 'post'],'/'.$url, 'ProductController@listing');
     }
+    //detail
+    Route::match(['get', 'post'],'/product/{id}', 'ProductController@detail');
 });
