@@ -106,7 +106,7 @@
                           <i style = "font-size:25px"class = "mdi mdi-file-excel-box"></i></a>         
                           </td>
                           <td>
-                            <a data-title = "Hình ảnh sản phẩm" class = "confirm_delete admin-delete-btn" data-model = "ProductImage" data-model-url = "product_images" data-model-id = "<?php echo e($image['id']); ?>" href="javascript:void(0)">Xóa</a>       
+                            <a data-title = "Hình ảnh sản phẩm" class = "confirm_delete admin-delete-btn" data-model = "ProductImage" data-model-url = "product_images" data-model-id = "<?php echo e($image['id']); ?>" data-product-id = "<?php echo e($product_details['id']); ?>"href="javascript:void(0)">Xóa</a>       
                           </td>
                         </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

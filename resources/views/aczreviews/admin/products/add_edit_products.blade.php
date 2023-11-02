@@ -103,6 +103,14 @@ use App\Models\aczreviews\Product;
                         <input type="checkbox" name = "is_featured"  value = "yes" @if(!empty($product['is_featured']) && $product['is_featured'] == 'yes') checked @endif>
                     </div>
                     <div class="form-group">
+                        <label for="is_featured">Là sản phẩm Amazon Choice?</label>
+                        <input type="checkbox" name = "amazon_choice"  value = "yes" @if(!empty($product['amazon_choice']) && $product['amazon_choice'] == 'yes') checked @endif>
+                    </div>
+                    <div class="form-group">
+                        <label for="is_featured">Là sản phẩm Acz Choice?</label>
+                        <input type="checkbox" name = "acz_choice"  value = "yes" @if(!empty($product['acz_choice']) && $product['acz_choice'] == 'yes') checked @endif>
+                    </div>
+                    <div class="form-group">
                         <label for="has_versions">Có nhiều phiên bản?</label>
                         <input type="checkbox" name = "has_versions"  value = "yes" @if(!empty($product['has_versions']) && $product['has_versions'] == 'yes') checked @endif>
                     </div>

@@ -9,6 +9,7 @@ use App\Models\aczreviews\Department;
 use App\Models\aczreviews\Category;
 use App\Models\aczreviews\Product;
 use App\Models\aczreviews\ProductImage;
+use App\Models\aczreviews\ProductSpec;
 use Validator;
 use Image;
 class ProductController extends Controller
@@ -44,7 +45,7 @@ class ProductController extends Controller
         }
         if($request->isMethod('post')){
          $data = $request->all();
-         $validator= Validator::make( $data, $rules = ['name' => 'required|regex:/^([a-zA-Z0-9_\-,;&\(\)ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i'], $messages = ['name.required' => 'Bạn cần nhập tên!', 'name.regex'=>'Tên không hợp lệ'])->validate();
+         $validator= Validator::make( $data, $rules = ['name' => 'required|regex:/^([a-zA-Z0-9_\-,;&\'ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i'], $messages = ['name.required' => 'Bạn cần nhập tên!', 'name.regex'=>'Tên không hợp lệ'])->validate();
          if($request->hasFile('image')){
             $image_tmp = $request->file('image');
             if($image_tmp->isValid()) {
@@ -74,6 +75,16 @@ class ProductController extends Controller
             $product->is_featured = $data['is_featured'];
         }else {
             $product->is_featured = 'no';
+        }
+        if(!empty($data['amazon_choice'])) {
+            $product->amazon_choice = $data['amazon_choice'];
+        }else {
+            $product->amazon_choice = 'no';
+        }
+        if(!empty($data['acz_choice'])) {
+            $product->acz_choice = $data['acz_choice'];
+        }else {
+            $product->acz_choice = 'no';
         }
         if(!empty($data['has_versions'])) {
             $product->has_versions = $data['has_versions'];
@@ -119,6 +130,24 @@ class ProductController extends Controller
         Product::where('id', $data['model_id'])->delete();
         return response()->json(['success_message'=> 'Đã xóa '.$title.'!']);
     }
+    public function delete_image(Request $request){
+        if($request->ajax()){
+            $data = $request->all();
+            $title = $data['title'];
+            $productImage = ProductImage::where('id', $data['model_id'])->first()->toArray();
+            $small_image_path = 'aczreviews/front/images/gal_images/small/';
+            $medium_image_path = 'aczreviews/front/images/gal_images/medium/';
+            //delete
+            if(file_exists($small_image_path.$productImage['image'])) {
+                unlink($small_image_path.$productImage['image']);
+            }
+            if(file_exists($medium_image_path.$productImage['image'])) {
+                unlink($medium_image_path.$productImage['image']);
+            }
+            ProductImage::where('id', $data['model_id'])->delete();
+            return response()->json(['success_message'=> 'Đã xóa '.$title.'!']);
+        }
+    }
     public function update_product_feature_status (Request $request) {
         if($request->ajax()){
             $data=$request->all();
@@ -160,5 +189,23 @@ class ProductController extends Controller
             return  $categories;
         }
         // echo 'hello';
+    }
+    public function add_edit_product_specs(Request $request, $id){
+        $product_details = Product::find($id)->toArray();
+        $product_specs = ProductSpec::where('product_id', $id)->get()->toArray();
+        if($request->isMethod('post')){
+            $data = $request->all();
+            // dd($data);
+            foreach($data['header'] as $key => $value){
+                    $product_spec = new ProductSpec;
+                    $product_spec->product_id = $id;
+                    $product_spec->header = $value;
+                    $product_spec->data = $data['data'][$key];
+                    $product_spec->status = 1;
+                    $product_spec->save();
+            }
+            return redirect()->back()->with('success_message', 'Đã thêm thông số sản phẩm!');
+        }
+        return view('aczreviews.admin.product_specs.add_edit_product_specs', compact('product_specs', 'product_details')); 
     }
 }

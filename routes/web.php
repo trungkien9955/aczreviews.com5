@@ -53,12 +53,45 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\aczreviews\admin')->gro
         Route::post('delete-Product/{id}', 'ProductController@delete_product');
         //product_images
         Route::match(['get', 'post'], 'add-images/{id}', 'ProductController@add_images');
+        Route::post('delete-ProductImage/{id}', 'ProductController@delete_image');
+        //product_specs
+        Route::match(['get', 'post'], 'add-edit-product-specs/{id}', 'ProductController@add_edit_product_specs');
+        //vendors
+        Route::get('vendors', 'VendorController@vendors');
+        Route::post('update-vendor-status', 'VendorController@update_vendor_status');
+        Route::post('delete-Vendor/{id}', 'VendorController@delete_vendor');
+        Route::match(['get', 'post'],'add-edit-vendors/{id?}', 'VendorController@add_edit_vendors');
+        //select province
+        Route::post('province-selected', 'VendorController@get_districts_after_province');
+        Route::post('district-selected', 'VendorController@get_wards_after_district');
+
     });
     Route::get('/back', 'ProductController@detail');
-
-
 });
-
+Route::prefix('/vendor')->namespace('App\Http\Controllers\aczreviews\vendor')->group(function(){
+    Route::match(['get', 'post'],'login', 'VendorController@login');
+    Route::group(['middleware'=>['vendor']], function(){
+        Route::get('dashboard', 'VendorController@dashboard');
+        Route::get('logout', 'VendorController@logout');
+        Route::match(['get', 'post'],'create-offer', 'VendorController@create_offer');
+        Route::match(['get', 'post'],'edit-offers/{id}', 'VendorController@edit_offers');
+        Route::post('get-sections-after-department-selection', 'VendorController@get_sections_after_department_selection');
+        Route::post('get-categories-after-section-selection', 'VendorController@get_categories_after_section_selection');
+        Route::post('get-products-after-category-selection', 'VendorController@get_products_after_category_selection');
+        //offers
+        Route::get('offers', 'VendorController@offers');
+        Route::post('update-offer-status', 'VendorController@update_offer_status');
+        Route::post('update-freeship-status', 'VendorController@update_freeship_status');
+        Route::post('update-gift-status', 'VendorController@update_gift_status');
+        Route::post('update-coupon-status', 'VendorController@update_coupon_status');
+        //statistics
+        Route::get('statistics', 'VendorController@statistics');
+        //products
+        Route::get('products', 'VendorController@products');
+        //info
+        Route::get('info', 'VendorController@info');
+    });
+});
 Route::namespace('App\Http\Controllers\aczreviews\front')->group(function(){
     Route::match(['get', 'post'],'/', 'IndexController@index');
     $category_url = Category::select('url')->where('status', 1)->get()->pluck('url')->toArray();
@@ -68,4 +101,15 @@ Route::namespace('App\Http\Controllers\aczreviews\front')->group(function(){
     }
     //detail
     Route::match(['get', 'post'],'/product/{id}', 'ProductController@detail');
+    //amazon choice
+    Route::get('/amazon-choice', 'ProductController@amazon_choice');
+    //acz choice
+    Route::get('/acz-choice', 'ProductController@acz_choice');
+    //vendor
+    Route::get('/vendor/{id}', 'VendorController@vendor');
+    //ajax vendor prices change
+    Route::post('vendor-prices-filter', 'ProductController@vendor_prices_filter');
+    Route::post('vendor-province-filter', 'ProductController@vendor_province_filter');
+    //rating
+    Route::post('guest-rating', 'RatingController@guest_rating');
 });

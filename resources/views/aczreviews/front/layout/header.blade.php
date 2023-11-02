@@ -38,7 +38,9 @@
                             <div class="header-account-wrapper">
                                 <a href=""><span>Tài khoản</span><img src="{{url('aczreviews/front/images/icon_images/account-1.png')}}" width= "36" height = "36" alt=""></a>
                                 <div class="header-account-hover-wrapper">
-                                    <a href="/user/login-register">Đăng nhập</a>
+                                    <a href="/admin/login">Đăng nhập (Admin)</a>
+                                    <a href="/vendor/login">Đăng nhập (Cửa hàng)</a>
+                                    <a href="/user/login">Đăng nhập (Người dùng)</a>
                                     <a href="/user/login-register">Đăng ký</a>
                                 </div>
                             </div>

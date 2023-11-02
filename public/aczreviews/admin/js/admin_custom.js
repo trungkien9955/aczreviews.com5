@@ -3,6 +3,7 @@ $(document).ready(function(){
     $('#sections').DataTable();
     $('#categories').DataTable();
     $('#products').DataTable();
+    $('#vendors').DataTable();
 })
 $(document).on("click", ".update_department_status", function() {
     var status = $(this).children("i").attr("status");
@@ -154,12 +155,37 @@ $(document).on("click", ".update_product_versions_status", function() {
         }
     })
 })
+$(document).on("click", ".update_vendor_status", function() {
+    var status = $(this).children("i").attr("status");
+    var vendor_id = $(this).data("vendor-id");
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: 'post',
+        url: '/admin/update-vendor-status',
+        data: {status:status, vendor_id:vendor_id},
+        success:function(resp){
+            $("#ajax_loading_overlay").fadeOut(300);
+            if(resp["status"]==0){
+                $(`a[data-vendor-id= ${resp.vendor_id}]`).html('<i style = "font-size:24px; color: red;"class = "fa-solid fa-circle-xmark" status = "inactive"></i>');
+            }
+            else if(resp["status"]==1){
+                $(`a[data-vendor-id= ${resp.vendor_id}]`).html('<i style = "font-size:24px; color: green;" class="fa-solid fa-circle-check" status = "active"></i>');
+            }
+        },
+        error:function(){
+        $("#ajax_loading_overlay").fadeOut(300);
+            alert("Error");
+        }
+    })
+})
 $(document).on("click", ".confirm_delete", function() {
     var title = $(this).data("title");
     if(confirm('Bạn có muốn xóa '+ title + ' này?')) {
         var model = $(this).data("model");
         var model_id = $(this).data("model-id");
-        var url = $(this).data("model-url");
+        var product_id = $(this).data("product-id");
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -170,7 +196,7 @@ $(document).on("click", ".confirm_delete", function() {
             success:function(resp){
                 $("#ajax_loading_overlay").fadeOut(300);
                 alert(resp.success_message);
-                window.location.href = '/admin/'+url;
+                window.location.href = '/admin/add-images/'+product_id;
             },
             error:function(){
             $("#ajax_loading_overlay").fadeOut(300);
@@ -223,6 +249,30 @@ $(document).ready(function(){
                 $('#category-selection').append(`<option value = "">Chọn</option>`)
                 $.each(resp, function(i){
                     $('#category-selection').append(`<option value = "${resp[i].id}">${resp[i].category_name}</option>`)
+                })
+            },
+            error:function(){
+            $("#ajax_loading_overlay").fadeOut(300);
+                alert("Error");
+            }
+        })
+        // alert(department_id);
+    })
+})
+$(document).ready(function(){
+    $('#category-selection').on('change', function(){
+        var category_id = $('#category-selection option:selected').val();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'post',
+            url: '/admin/get-products-after-category-selection',
+            data: {category_id:category_id},
+            success:function(resp){
+                $("#ajax_loading_overlay").fadeOut(300);
+                $.each(resp, function(i){
+                    $('#product-selection').append(`<option value = "${resp[i].id}">${resp[i].name}</option>`)
                 })
             },
             error:function(){
@@ -416,7 +466,7 @@ $('#province').on('change', function(){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         type: 'post',
-        url: '/province-selected',
+        url: '/admin/province-selected',
         data: {province_id:province_id},
         success: function(resp){
             $("#ajax_loading_overlay").fadeOut(300);
@@ -439,13 +489,14 @@ $('#district').on('change', function(){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         type: 'post',
-        url: '/district-selected',
+        url: '/admin/district-selected',
         data: {district_id:district_id},
         success: function(resp){
             $("#ajax_loading_overlay").fadeOut(300);
             $.each(resp, function(i){
                 $('#ward').append(`<option value = "${resp[i].id}">${resp[i].name}</option>`)
             })
+            $('#ward').append(`<option value = "">Để trống</option>`)
         },
         error: function(){
             $("#ajax_loading_overlay").fadeOut(300);
@@ -624,4 +675,27 @@ $(document).on('click', '.like', function(){
 })
 $(document).on('click', '.dislike', function(){
     $(this).css('color', '#0d6efd');
+})
+    //add product specs field
+    //add or remove fields jquery
+    var max_product_specs_field = 10; //Input fields increment limitation
+    var addButton = $('.add_product_specs_button'); //Add button selector
+    var product_specs_wrapper = $('.field_product_specs_wrapper'); //Input field wrapper
+    var max_product_specs_field_html = '<div><input type="text" name="header[]" placeholder="Tên thông số"  required style = "max-width: 240px;"/><input type="text" name="data[]" placeholder="Mô tả thông số" required = "" style = "max-width: 240px;"/><br><a href="javascript:void(0);" class="add_product_specs_button" title="Add spec">Thêm</a><a href="javascript:void(0);" class="remove_button" title="" style = "margin-left:12px;">Xóa</a></div>'; //New input field html 
+    var x = 1; //Initial field counter is 1
+    
+    //Once add button is clicked
+    $(addButton).click(function(){
+        //Check maximum number of input fields
+        if(x < max_product_specs_field){ 
+            x++; //Increment field counter
+            $(product_specs_wrapper).append(max_product_specs_field_html); //Add field html
+        }
+        //Once remove button is clicked
+        $(product_specs_wrapper).on('click', '.remove_button', function(e){
+            e.preventDefault();
+            $(this).parent('div').remove(); //Remove field html
+            x--; //Decrement field counter
+        });
+
 })

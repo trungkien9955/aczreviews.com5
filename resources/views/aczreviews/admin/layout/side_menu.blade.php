@@ -50,5 +50,15 @@ use App\Models\aczreviews\Section;
                 </li>
             </ul>
             <hr>
+            <div class="side-nav-list-header">
+                <h5>Quản lý cửa hàng</h5>
+            </div>
+            <ul class="side-nav-list">
+                <li class="side-nav-list-item">
+                    <a href="/admin/vendors" >
+                    <span>Danh mục cửa hàng</span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>

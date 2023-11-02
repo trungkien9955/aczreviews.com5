@@ -30,122 +30,55 @@
                 <div class="footer-second-wrapper">
                     <div class="shop-list-wrapper">
                         <div class="shop-list-header">
-                            <h2>HỆ THỐNG CỬA HÀNG HOA TƯƠI</h2>
+                            <h3>ACZREVIEWS - TRANG VIEW SẢN PHẨM HÀNG ĐẦU VIỆT NAM!</h3>
                         </div>
                         <div class="shop-list-content">
                             <div class="row">
-                                <div class="col-lg-3 col-md3 col-xs-12">
-                                    <div class="shop-list-title">
-                                        <span class="">★ Showroom 1</span>
+                                <div class="footer-contact-wrapper">
+                                    <h5>Thông tin liên hệ:</h5>
+                                    <div class="footer-contact-details">
+                                        <div><h6>Admin: </h6>&nbsp;<span>Kien Nguyen</span></div>
+                                        <div><h6>Điện thoại: </h6>&nbsp;<span>0964 666 156</span></div>
+                                        <div><h6>Email:</h6>&nbsp;<span>trungkien2411@gmail.com</span></div>
                                     </div>
-                                    <ul class="notStyle list">
-                                        <li>
-                                            <a href="">
-                                                <i class="fa fa-map-marker"></i>
-                                                <b>28 - 30 Trần Triệu Luật, P.6, Quận Tân Bình, TP.HCM</b>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <i class="fa fa-phone"></i>
-                                                <span>0899 000 001</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <i class="fa fa-clock-o"></i>
-                                                <span>
-                                                    Thời gian làm việc: T2 - Chủ nhật, 08H30-21H00
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </div>
-                                <div class="col-lg-3 col-md3 col-xs-12">
+                            </div>
+                            <div class="footer-menu-header">
+                                <h4>DANH MỤC SẢN PHẨM</h4>
+                            </div>
+                            <div class="row">
+                                <?php 
+                                use App\Models\aczreviews\Department;
+                                    $departments = Department::with(['sections'=>function($query){
+                                        $query->with('categories')->get()->toArray();
+                                    }])->get()->toArray();
+                                ?>
+                                @foreach($departments as $department)
+                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                    <div class="footer-menu-item-wrapper">
                                     <div class="shop-list-title">
-                                        <span class="">★ Showroom 1</span>
+                                        <h5 class="">★ {{$department['department_name']}}</h5>
                                     </div>
-                                    <ul class="notStyle list">
+                                    @foreach($department['sections'] as $section)
+                                    <h6>{{$section['section_name']}}</h6>
+                                    <ul class="footer-list">
+                                    @foreach($section['categories'] as $category)
                                         <li>
                                             <a href="">
-                                                <i class="fa fa-map-marker"></i>
-                                                <b>28 - 30 Trần Triệu Luật, P.6, Quận Tân Bình, TP.HCM</b>
+                                            {{$category['category_name']}}
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="">
-                                                <i class="fa fa-phone"></i>
-                                                <span>0899 000 001</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <i class="fa fa-clock-o"></i>
-                                                <span>
-                                                    Thời gian làm việc: T2 - Chủ nhật, 08H30-21H00
-                                                </span>
-                                            </a>
-                                        </li>
+                                    @endforeach
                                     </ul>
-                                </div>
-                                <div class="col-lg-3 col-md3 col-xs-12">
-                                    <div class="shop-list-title">
-                                        <span class="">★ Showroom 1</span>
+                                    @endforeach
+                                    <hr>
                                     </div>
-                                    <ul class="notStyle list">
-                                        <li>
-                                            <a href="">
-                                                <i class="fa fa-map-marker"></i>
-                                                <b>28 - 30 Trần Triệu Luật, P.6, Quận Tân Bình, TP.HCM</b>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <i class="fa fa-phone"></i>
-                                                <span>0899 000 001</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <i class="fa fa-clock-o"></i>
-                                                <span>
-                                                    Thời gian làm việc: T2 - Chủ nhật, 08H30-21H00
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </div>
-                                <div class="col-lg-3 col-md3 col-xs-12">
-                                    <div class="shop-list-title">
-                                        <span class="">★ Showroom 1</span>
-                                    </div>
-                                    <ul class="notStyle list">
-                                        <li>
-                                            <a href="">
-                                                <i class="fa fa-map-marker"></i>
-                                                <b>28 - 30 Trần Triệu Luật, P.6, Quận Tân Bình, TP.HCM</b>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <i class="fa fa-phone"></i>
-                                                <span>0899 000 001</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <i class="fa fa-clock-o"></i>
-                                                <span>
-                                                    Thời gian làm việc: T2 - Chủ nhật, 08H30-21H00
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                         <div class="end-section">
-                                <p>© 2023 FlowerShop. All Rights Reserved. Designed by Kien Nguyen.</p>
+                                <p>© 2023 Aczreviews. All Rights Reserved. Designed by Kien Nguyen.</p>
                         </div>
                     </div>
                 </div>

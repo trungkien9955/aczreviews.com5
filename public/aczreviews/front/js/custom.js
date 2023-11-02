@@ -1,69 +1,48 @@
-$(document).ready(function(){
-    $('.size_option').on('click', function(){
-       var product_id = $('#product_id').val();
-        var size = $(this).val();
-        var color = $('.color_option:checked').val();
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            method: "post",
-            url: "/size-selection",
-            data: {product_id: product_id, size:size, color:color},
-            success: function(resp){
-                $("#ajax_loading_overlay").fadeOut(300);
-                // alert(resp); return false;
-                $('.information-price').html(resp.view);
-                $('.info-code .attr-sku').html(resp.attr_sku);
-
-                if(resp.attr_stock > 0) {
-                    $('.info-stock span.stock-data').html(resp.attr_stock);
-                    $('.stock-check').html("<span style = 'color: #5CB85C;font-weight: 700;'>Còn hàng</span>");
-                }else{
-                    $('.info-stock span.stock-data').html("0");
-                    $('.stock-check').html("<span style = 'color: #e02027;font-weight: 700;' >Tạm hết hàng</span>");
-                }
-            },
-            error: function(){
-                $("#ajax_loading_overlay").fadeOut(300);
-                alert('error');
-            }
-        })
+//vendors prices and provinces change
+$('#vendor_prices').on('change', function(event){
+    event.preventDefault();
+    var vendor_prices_filter = $('#vendor_prices option:selected').val();
+    var product_id = $(this).data('product-id-for-vendor-prices');
+    if(vendor_prices_filter !== '')
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: 'post',
+        url: '/vendor-prices-filter',
+        data: {vendor_prices_filter:vendor_prices_filter, product_id:product_id},
+        success: function(resp){
+            $("#ajax_loading_overlay").fadeOut(300);
+            $('.detail-vendors-wrapper-container').html(resp.view);
+        },
+        error: function(){
+            $("#ajax_loading_overlay").fadeOut(300);
+            alert('error');
+        }
     })
-    $('.color_option').on('click', function(){
-        var color = $(this).val();
-        var size = $('.size_option:checked').val();
-        // alert(size);return false;
-        var product_id = $('#product_id').val();
-         $.ajax({
-             headers: {
-                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-             },
-             method: "post",
-             url: "/color-selection",
-             data: {product_id: product_id, color:color, size:size},
-             success: function(resp){
-                $("#ajax_loading_overlay").fadeOut(300);
-                 $image = resp.image;
-                 $('.product-detail-image-container img').attr('src',"/FlowerShop/front/images-3/product_images/medium/"+ $image)
-                 $('.information-price').html(resp.view);
-                 $('.info-code .attr-sku').html(resp.attr_sku);
-                 if(resp.attr_stock > 0) {
-                    $('.info-stock span.stock-data').html(resp.attr_stock);
-                    $('.stock-check').html("<span style = 'color: #5CB85C;font-weight: 700;'>Còn hàng</span>");
-                }else{
-                    $('.info-stock span.stock-data').html("0");
-                    $('.stock-check').html("<span style = 'color: #e02027;font-weight: 700;' >Tạm hết hàng</span>");
-                }
-             },
-             error: function(){
-                $("#ajax_loading_overlay").fadeOut(300);
-                 alert('error');
-             }
-         })
-     })
 })
-
+$('#vendor_provinces').on('change', function(event){
+    event.preventDefault();
+    var province_id = $('#vendor_provinces option:selected').val();
+    var product_id = $(this).data('product-id-for-vendor-province');
+    if(province_id !== '')
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: 'post',
+        url: '/vendor-province-filter',
+        data: {province_id:province_id, product_id:product_id},
+        success: function(resp){
+            $("#ajax_loading_overlay").fadeOut(300);
+            $('.detail-vendors-wrapper-container').html(resp.view);
+        },
+        error: function(){
+            $("#ajax_loading_overlay").fadeOut(300);
+            alert('error');
+        }
+    })
+})
 $('#register_form').submit(function(event){
     event.preventDefault();
     var form_data = $(this).serialize();
@@ -307,11 +286,6 @@ $('#guest-rating-form').submit(function(event){
     })
 })
 
-// gallery
-$(document).on('click', '.gallery-image', function(){
-    $src = $(this).attr('src');
-    $('.product-detail-image').attr('src', $src);
-})
 function openNav() {
     $("#side-nav").css('animation', 'expand 0.3s forwards');
     $("#nav-close-btn").css('display', 'block');
@@ -379,14 +353,8 @@ $('.main-menu-back').each(function(){
         $('#side-nav-main-container').css('animation', 'mainBack 0.3s forwards');
     })
 })
-
-
-  $(document).on('click', '.heart', function(){
-    $(this).css('color', '#D81525');
-})
-$(document).on('click', '.like', function(){
-    $(this).css('color', '#0d6efd');
-})
-$(document).on('click', '.dislike', function(){
-    $(this).css('color', '#0d6efd');
+// gallery
+$(document).on('click', '.gallery-image', function(){
+    $src = $(this).attr('src');
+    $('.product-detail-image').attr('src', $src);
 })

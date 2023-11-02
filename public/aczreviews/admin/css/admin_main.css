@@ -861,6 +861,41 @@ footer {
 .search-products-container {
     margin-bottom: 24px;
 }
+/* vendor */
+
+.detail-vendor-head {
+    background-color: var(--primary-color-2);
+    color: #e1e1e1;
+    padding: 8px;
+    position: relative;
+    
+}
+.detail-vendor-img {
+    display:inline-block;
+}
+.detail-vendor-name {
+    font-size: 22px;
+    position:absolute;
+    bottom: 12px;
+    left:80px;
+}
+.detail-vendor-name span {
+    margin-bottom: 0;
+}
+.detail-vendor-img img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+.detail-vendor-badges {
+    display:inline-block;
+}
+.detail-vendor-badges img {
+    width: 20px;
+    height: 20px;
+    vertical-align: top;
+
+}
 /* detail */
 .product-detail-image-container img {
     border: 1px solid #cccccc;

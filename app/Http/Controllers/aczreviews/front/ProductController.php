@@ -14,6 +14,8 @@ use App\Models\aczreviews\GuestRatingInfo;
 use App\Models\aczreviews\Category;
 use App\Models\aczreviews\Product;
 use App\Models\aczreviews\Section;
+use App\Models\aczreviews\Province;
+use App\Models\aczreviews\Offer;
 use Illuminate\Support\Facades\View;
 class ProductController extends Controller
 {
@@ -70,8 +72,22 @@ class ProductController extends Controller
                 return view('aczreviews.front.products.listing', compact('products', 'category', 'count', 'url'));
         }
     }
+    public function amazon_choice(Request $request){
+                $products = Product::where('amazon_choice', 'yes')->get()->toArray();
+                $count = count($products);
+                $title = 'Sản phẩm được xếp hạng Amazon\'s choice';
+                return view('aczreviews.front.products.listing_without_filters', compact('products', 'title', 'count'));
+    }
+    public function acz_choice(Request $request){
+                $products = Product::where('acz_choice', 'yes')->get()->toArray();
+                $count = count($products);
+                $title = 'Sản phẩm được xếp hạng Acz\'s choice';
+                return view('aczreviews.front.products.listing_without_filters', compact('products', 'title', 'count'));
+    }
+
     public function detail(Request $request, $id){
-        $product_details = Product::with('department','section','category', 'brand','images')->find($id)->toArray();
+        $provinces = Province::get()->toArray();
+        $product_details = Product::with('department','section','category', 'brand','images', 'specs', 'features', 'offers')->find($id)->toArray();
         $category_details = Category::where('id', $product_details['category_id'])->first()->toArray();
         $similar_products = Product::where('category_id', $product_details['category_id'])->where('id', '!=', $id)->limit(4)->inRandomOrder()->get()->toArray();
         if(empty(Session::get('session_id'))){
@@ -87,6 +103,28 @@ class ProductController extends Controller
        }
        $viewed_product_id_collection = DB::table('viewed_products')->select('product_id')->where('product_id', '!=', $id)->where('session_id', $session_id)->inRandomOrder()->get()->take(4)->pluck('product_id');
        $viewed_products = Product::whereIn('id', $viewed_product_id_collection)->get()->toArray();
-        return view('aczreviews.front.products.detail', compact('product_details', 'category_details', 'similar_products', 'viewed_products'));
+        return view('aczreviews.front.products.detail', compact('product_details', 'category_details', 'provinces', 'similar_products', 'viewed_products'));
+    }
+    public function vendor_prices_filter(Request $request){
+        if($request->ajax()){
+            $data = $request->all();
+            $filter = $data['vendor_prices_filter'];
+            $product_id = $data['product_id'];
+            if($filter == "vendor_prices_low"){
+                $offers = Offer::where(['product_id'=> $product_id, 'status'=>1])->orderBy('price', 'Asc')->get()->toArray();
+            }else if($filter == "vendor_prices_high") {
+                $offers = Offer::where(['product_id'=> $product_id, 'status'=>1])->orderBy('price', 'Desc')->get()->toArray();
+            }
+            return response()->json(['view' => (String)View::make('aczreviews.front.products.ajax_vendors_wrapper', compact('offers'))]);
+        }
+    }
+    public function vendor_province_filter(Request $request){
+        if($request->ajax()){
+            $data = $request->all();
+            $province_id = $data['province_id'];
+            $product_id = $data['product_id'];
+            $offers = Offer::where(['product_id'=> $product_id,'province_id'=>$province_id, 'status'=>1])->get()->toArray();
+            return response()->json(['view' => (String)View::make('aczreviews.front.products.ajax_vendors_wrapper', compact('offers'))]);
+        }
     }
 }
