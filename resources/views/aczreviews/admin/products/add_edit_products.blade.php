@@ -67,6 +67,10 @@ use App\Models\aczreviews\Product;
                         </select>
                     </div>
                     <div class="form-group">
+                    <label for="code">Thương hiệu</label>
+                    <input type="text" class="form-control" name = "brand" @if(!empty($product['brand_id'])) value = "{{$product['brand']['name']}}" @else value = "{{old('brand')}}" @endif>
+                    </div>
+                    <div class="form-group">
                     <label for="code">Mã sản phẩm</label>
                     <input type="text" class="form-control" name = "code" @if(!empty($product['code'])) value = "{{$product['code']}}" @else value = "{{old('code')}}" @endif required>
                     </div>
@@ -84,14 +88,13 @@ use App\Models\aczreviews\Product;
                     </div>
                     <div class="form-group">
                     <label for="color">Giảm giá</label>
-                    <input type="text" class="form-control" name = "discount" @if(!empty($product['discount'])) value = "{{$product['discount']}}" @else value = "{{old('discount')}}" @endif required>
+                    <input type="text" class="form-control" name = "discount" @if(!empty($product['discount'])) value = "{{$product['discount']}}" @else value = 0 @endif required>
                     </div>
                     <div class="form-group">
-                        <label for="image">Hình ảnh (Tối ưu: 1000x1000)</label>
+                        <label for="image">Hình ảnh (Tối ưu: 344x344)</label>
                         <input type="file" class="form-control" name = "image"  >
                         @if(!empty($product['image']))
-
-                        <a href="{{url('aczreviews/front/images/product_images/'.$product['image'])}}">View image</a>
+                        <a href="{{url('aczreviews/front/images/product_images/'.$product['image'])}}">Xem hình ảnh</a>
                         @endif
                     </div>
                     <div class="form-group">

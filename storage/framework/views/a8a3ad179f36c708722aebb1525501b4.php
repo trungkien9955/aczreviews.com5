@@ -16,7 +16,7 @@ use App\Models\aczreviews\Vendor;
                             </div>
                             <div class="detail-thumb">
                                 <?php $__currentLoopData = $product_details['images']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gal_image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <img src="<?php echo e(url('aczreviews/front/images/gal_images/medium/'.$gal_image['image'])); ?>" class = "gallery-image" alt="">
+                                <img src="<?php echo e(url('aczreviews/front/images/gal_images/small/'.$gal_image['image'])); ?>" class = "gallery-image" alt="">
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </div>
                         </div>
@@ -29,7 +29,7 @@ use App\Models\aczreviews\Vendor;
                         </div>
                         <?php if(!empty($product_details['brand'])): ?>
                         <div class="detail-brand">
-                            <h6>Thương hiệu: <?php echo e($product_details['brand']['name']); ?></h6>
+                            <h6>Thương hiệu: <a href=""><?php echo e($product_details['brand']['name']); ?></a></h6>
                         </div>
                         <?php endif; ?>
                         <div class="detail-badges">
@@ -112,7 +112,7 @@ use App\Models\aczreviews\Vendor;
                         <?php else: ?>
                         <h6>Hiện chưa có cửa hàng nào bán sản phẩm này.</h6>
                         <?php endif; ?>
-                        <h6>Bạn đang bán sản phẩm này?</h6><a href="">Đăng ký bán ngay</a>
+                        <h6>Bạn đang bán sản phẩm này?</h6><a <?php if(!Auth::guard('vendor')->check()): ?> href="/vendor/login" <?php else: ?>  href="/vendor/create-offer" <?php endif; ?>>Đăng ký bán ngay</a>
                     <div class="detail-vendor-filter">
                         <div class="d-flex gx-2 mt-2">
                             <div class="col">

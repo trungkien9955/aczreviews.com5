@@ -56,6 +56,10 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\aczreviews\admin')->gro
         Route::post('delete-ProductImage/{id}', 'ProductController@delete_image');
         //product_specs
         Route::match(['get', 'post'], 'add-edit-product-specs/{id}', 'ProductController@add_edit_product_specs');
+        //product features
+        Route::match(['get', 'post'], 'add-edit-product-features/{id}', 'ProductController@add_edit_product_features');
+        Route::post('delete-current-feature', 'ProductController@delete_current_feature');
+        Route::post('update-current-feature', 'ProductController@update_current_feature');
         //vendors
         Route::get('vendors', 'VendorController@vendors');
         Route::post('update-vendor-status', 'VendorController@update_vendor_status');

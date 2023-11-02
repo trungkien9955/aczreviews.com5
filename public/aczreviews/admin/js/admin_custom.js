@@ -697,5 +697,63 @@ $(document).on('click', '.dislike', function(){
             $(this).parent('div').remove(); //Remove field html
             x--; //Decrement field counter
         });
+        //add product features
+    })
 
-})
+    $(document).on('click', '#append-feature-input', function(e){
+        e.preventDefault();
+        $('#add-product-feature').append('<div class="input-group mt-2"><input type="text" class="form-control"  name="features[]" placeholder = "Nhập đặc điểm sản phẩm"><div class="input-group-append m-1"><a class="btn btn-outline-secondary delete-feature-input" >Xóa</button></div></div>');
+    })
+    $(document).on('click', '.delete-feature-input', function(e){
+        e.preventDefault();
+        var div = $(this).parent();
+        $(div).parent().remove();
+    })
+    $(document).on('click', '.delete-current-feature', function(e){
+        e.preventDefault();
+        if(confirm('Bạn có muốn xóa đặc điểm sản phẩm này?')) {
+            var feature_id = $(this).data('feature-id');
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: '/admin/delete-current-feature',
+                data: {feature_id:feature_id},
+                success: function(resp){
+                    $("#ajax_loading_overlay").fadeOut(300);
+                    alert(resp.success_message)
+                },
+                error: function(){
+                    $("#ajax_loading_overlay").fadeOut(300);
+                    alert('error');
+                }
+            })
+            $(this).parent().parent().remove();
+        }else{
+            return false;
+        }
+    })
+    $(document).on('click', '.update-current-feature', function(e){
+        e.preventDefault();
+            var feature_id = $(this).data('feature-id');
+            var content = $(`input[data-feature-id = ${feature_id}]`).val();
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: '/admin/update-current-feature',
+                data: {feature_id:feature_id, content:content},
+                success: function(resp){
+                    $("#ajax_loading_overlay").fadeOut(300);
+                    alert(resp.success_message)
+                },
+                error: function(){
+                    $("#ajax_loading_overlay").fadeOut(300);
+                    alert('error');
+                }
+            })
+    })
+
+

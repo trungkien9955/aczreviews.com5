@@ -16,7 +16,7 @@ use App\Models\aczreviews\Vendor;
                             </div>
                             <div class="detail-thumb">
                                 @foreach($product_details['images'] as $gal_image)
-                                <img src="{{url('aczreviews/front/images/gal_images/medium/'.$gal_image['image'])}}" class = "gallery-image" alt="">
+                                <img src="{{url('aczreviews/front/images/gal_images/small/'.$gal_image['image'])}}" class = "gallery-image" alt="">
                                 @endforeach
                             </div>
                         </div>
@@ -29,7 +29,7 @@ use App\Models\aczreviews\Vendor;
                         </div>
                         @if(!empty($product_details['brand']))
                         <div class="detail-brand">
-                            <h6>Thương hiệu: {{$product_details['brand']['name']}}</h6>
+                            <h6>Thương hiệu: <a href="">{{$product_details['brand']['name']}}</a></h6>
                         </div>
                         @endif
                         <div class="detail-badges">
@@ -112,7 +112,7 @@ use App\Models\aczreviews\Vendor;
                         @else
                         <h6>Hiện chưa có cửa hàng nào bán sản phẩm này.</h6>
                         @endif
-                        <h6>Bạn đang bán sản phẩm này?</h6><a href="">Đăng ký bán ngay</a>
+                        <h6>Bạn đang bán sản phẩm này?</h6><a @if(!Auth::guard('vendor')->check()) href="/vendor/login" @else  href="/vendor/create-offer" @endif>Đăng ký bán ngay</a>
                     <div class="detail-vendor-filter">
                         <div class="d-flex gx-2 mt-2">
                             <div class="col">

@@ -30,7 +30,7 @@
                         <div class="form-group">
                         <label for="">Hình ảnh sản phẩm:</label><br>
                         @if(!empty($product_details['image']))
-                          <img style = "width: 150px; height: 150px"src="{{url('aczreviews/front/images/product_images/medium/'.$product_details['image'])}}" alt="">
+                          <img style = "width: 150px; height: 150px"src="{{url('aczreviews/front/images/product_images/large/'.$product_details['image'])}}" alt="">
                           @else
                           <img style = "width: 150px; height: 150px" src="{{url('aczreviews/front/images/no-image.png')}}" alt="">
                           @endif
@@ -87,7 +87,7 @@
                           </td>
                           <td>
                             {{$image['image']}}
-                          <img style = "width: 150px; height: 150px" src="{{url('aczreviews/front/images/gal_images/medium/'.$image['image'])}}" alt="">
+                          <img style = "width: 150px; height: 150px" src="{{url('aczreviews/front/images/gal_images/small/'.$image['image'])}}" alt="">
                           </td>               
                           <td>
                             @if($image['status'] ==1)

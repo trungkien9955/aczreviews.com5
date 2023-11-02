@@ -568,17 +568,25 @@ footer {
     border-radius: 4px;
 }
 .cat-section-wrapper .admin-edit-btn {
-    background-color: var(--color-primary);
+    border: 1px solid var(--text-color);
     padding: 4px 8px;
-    color: #fff !important;
+    color: var(--text-color) !important;
     border-radius: 4px;
+    display: block;
+    margin: 3px;
 }
+.admin-edit-btn:hover {
+    color: #fff!important;
+    background-color: var(--text-color);
+}
+
 .cat-section-wrapper .admin-delete-btn {
     background-color: var(--red-color);
     padding: 4px 8px;
     color: #fff !important;
     border-radius: 4px;
 }
+
 .cat-section-content, .cat-section-title {
     padding: 0 12px;
 }
@@ -861,6 +869,7 @@ footer {
 .search-products-container {
     margin-bottom: 24px;
 }
+
 /* vendor */
 
 .detail-vendor-head {

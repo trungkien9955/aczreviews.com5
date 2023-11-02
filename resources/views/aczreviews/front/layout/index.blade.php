@@ -397,7 +397,7 @@
                     <div class="home-department-content">
                         <div class="row gy-2">
                             <div class="col-lg-2 col-md-2 col-xs-4">
-                                <a href="">
+                                <a href="/vitamins-tot-nhat">
                                     <div class="home-block-vitamins">
                                         <div class="home-block-vitamins-inner-wrapper">
                                             <div class="home-block-icon-vitamins">

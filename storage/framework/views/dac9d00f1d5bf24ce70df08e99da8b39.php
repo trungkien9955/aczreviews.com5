@@ -68,6 +68,10 @@ use App\Models\aczreviews\Product;
                         </select>
                     </div>
                     <div class="form-group">
+                    <label for="code">Thương hiệu</label>
+                    <input type="text" class="form-control" name = "brand" <?php if(!empty($product['brand_id'])): ?> value = "<?php echo e($product['brand']['name']); ?>" <?php else: ?> value = "<?php echo e(old('brand')); ?>" <?php endif; ?>>
+                    </div>
+                    <div class="form-group">
                     <label for="code">Mã sản phẩm</label>
                     <input type="text" class="form-control" name = "code" <?php if(!empty($product['code'])): ?> value = "<?php echo e($product['code']); ?>" <?php else: ?> value = "<?php echo e(old('code')); ?>" <?php endif; ?> required>
                     </div>
@@ -85,14 +89,13 @@ use App\Models\aczreviews\Product;
                     </div>
                     <div class="form-group">
                     <label for="color">Giảm giá</label>
-                    <input type="text" class="form-control" name = "discount" <?php if(!empty($product['discount'])): ?> value = "<?php echo e($product['discount']); ?>" <?php else: ?> value = "<?php echo e(old('discount')); ?>" <?php endif; ?> required>
+                    <input type="text" class="form-control" name = "discount" <?php if(!empty($product['discount'])): ?> value = "<?php echo e($product['discount']); ?>" <?php else: ?> value = 0 <?php endif; ?> required>
                     </div>
                     <div class="form-group">
-                        <label for="image">Hình ảnh (Tối ưu: 1000x1000)</label>
+                        <label for="image">Hình ảnh (Tối ưu: 344x344)</label>
                         <input type="file" class="form-control" name = "image"  >
                         <?php if(!empty($product['image'])): ?>
-
-                        <a href="<?php echo e(url('aczreviews/front/images/product_images/'.$product['image'])); ?>">View image</a>
+                        <a href="<?php echo e(url('aczreviews/front/images/product_images/'.$product['image'])); ?>">Xem hình ảnh</a>
                         <?php endif; ?>
                     </div>
                     <div class="form-group">

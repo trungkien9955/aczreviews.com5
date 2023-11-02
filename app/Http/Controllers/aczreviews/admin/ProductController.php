@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\aczreviews\Section;
 use App\Models\aczreviews\Department;
 use App\Models\aczreviews\Category;
+use App\Models\aczreviews\Brand;
 use App\Models\aczreviews\Product;
 use App\Models\aczreviews\ProductImage;
 use App\Models\aczreviews\ProductSpec;
+use App\Models\aczreviews\ProductFeature;
 use Validator;
 use Image;
 class ProductController extends Controller
@@ -40,23 +42,23 @@ class ProductController extends Controller
         }
         else {
          $title = "Chỉnh sửa Sản phẩm 2";
-         $product = Product::find($id);
+         $product = Product::with('brand')->find($id);
          $message = "Đã chỉnh sửa Sản phẩm!";
         }
         if($request->isMethod('post')){
          $data = $request->all();
-         $validator= Validator::make( $data, $rules = ['name' => 'required|regex:/^([a-zA-Z0-9_\-,;&\'ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i'], $messages = ['name.required' => 'Bạn cần nhập tên!', 'name.regex'=>'Tên không hợp lệ'])->validate();
+        //  $validator= Validator::make( $data, $rules = ['name' => 'required|regex:/^([a-zA-Z0-9_\-,;&\%\'\(\)ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i'], $messages = ['name.required' => 'Bạn cần nhập tên!', 'name.regex'=>'Tên không hợp lệ'])->validate();
          if($request->hasFile('image')){
             $image_tmp = $request->file('image');
             if($image_tmp->isValid()) {
                 $extension = $image_tmp->getClientOriginalExtension(); 
-                 $imageName = $data['name'].rand(1111,9999).'.'.$extension; 
+                 $imageName = $image_tmp->getClientOriginalName().'.'.$extension; 
                  $largeImagePath = 'aczreviews/front/images/product_images/large/'.$imageName;
-                 $mediumImagePath = 'aczreviews/front/images/product_images/medium/'.$imageName;
-                 $smallImagePath = 'aczreviews/front/images/product_images/small/'.$imageName;
-               Image::make($image_tmp)->resize(1000,1000)->save($largeImagePath);
-               Image::make($image_tmp)->resize(500,500)->save($mediumImagePath);
-               Image::make($image_tmp)->resize(277,366)->save($smallImagePath);
+                //  $mediumImagePath = 'aczreviews/front/images/product_images/medium/'.$imageName;
+                //  $smallImagePath = 'aczreviews/front/images/product_images/small/'.$imageName;
+               Image::make($image_tmp)->save($largeImagePath);
+            //    Image::make($image_tmp)->resize(500,500)->save($mediumImagePath);
+            //    Image::make($image_tmp)->resize(277,366)->save($smallImagePath);
                $product->image = $imageName;
            }
         }
@@ -64,7 +66,21 @@ class ProductController extends Controller
          $product->department_id = $data['department_id'];
          $product->section_id = $data['section_id'];
          $product->category_id = $data['category_id'];
-         $product->name = $data['name'];
+         if(!empty($data['brand'])){
+            $brands = Brand::select('name')->get()->pluck('name')->toArray();
+            // dd($brands);
+            if(in_array($data['brand'], $brands)){
+                $brand = Brand::where('name', $data['brand'])->first()->toArray();
+                $product->brand_id =  $brand['id'];
+            }else{
+                $new_brand = new Brand;
+                $new_brand->name = $data['brand'];
+                $new_brand->image = '';
+                $new_brand->status = 1;
+                $new_brand->save();
+                $product->brand_id =  $new_brand['id'];
+            }
+         }
          $product->code = $data['code'];
          $product->color = $data['color'];
          $product->size = $data['size'];
@@ -101,17 +117,17 @@ class ProductController extends Controller
         $product_details = Product::with('images')->find($id);
         if($request->isMethod('post')){
             if($request->hasFile('images')){
-                $product_id_for_image_name = $request['product_id_for_image_name'];
                 $images = $request->file('images');
                 foreach($images as $key=>$image){
                     $image_tmp = Image::make($image);
-                    $image_original_name = $image->getClientOriginalName();
                     $extension = $image->getClientOriginalExtension();
-                    $image_name = $product_id_for_image_name.rand(111, 9999).'.'.$extension;
-                    $medium_image_path = 'aczreviews/front/images/gal_images/medium/'.$image_name;
+                    $string = substr($product_details['name'], 0, 12);
+                    $product_name  = explode(' ', $string);
+                    $image_name = implode('-',  $product_name).rand(111, 999).'.'.$extension;
+                    // $medium_image_path = 'aczreviews/front/images/gal_images/medium/'.$image_name;
                     $small_image_path = 'aczreviews/front/images/gal_images/small/'.$image_name;
-                    Image::make($image_tmp)->resize(500, 500)->save($medium_image_path);
-                    Image::make($image_tmp)->resize(300, 300)->save($small_image_path);
+                    // Image::make($image_tmp)->resize(500, 500)->save($medium_image_path);
+                    Image::make($image_tmp)->save($small_image_path);
                     //add images to db
                     $image = new ProductImage;
                     $image->product_id = $id;
@@ -207,5 +223,36 @@ class ProductController extends Controller
             return redirect()->back()->with('success_message', 'Đã thêm thông số sản phẩm!');
         }
         return view('aczreviews.admin.product_specs.add_edit_product_specs', compact('product_specs', 'product_details')); 
+    }
+    public function add_edit_product_features(Request $request, $id){
+        $product_details = Product::find($id)->toArray();
+        $product_features = ProductFeature::where('product_id', $id)->get()->toArray();
+        if($request->isMethod('post')){
+            $data = $request->all();
+            // dd($data);
+            foreach($data['features'] as $key => $value){
+                    $feature = new ProductFeature;
+                    $feature->product_id = $id;
+                    $feature->content = $value;
+                    $feature->status = 1;
+                    $feature->save();
+            }
+            return redirect()->back()->with('success_message', 'Đã thêm các đặc điểm sản phẩm!');
+        }
+        return view('aczreviews.admin.products.add_edit_product_features', compact('product_features', 'product_details')); 
+    }
+    public function update_current_feature(Request $request){
+        if($request->ajax()){
+            $data = $request->all();
+            $product_feature = ProductFeature::find($data['feature_id'])->update(['content'=>$data['content']]);
+            return response()->json(['success_message' => 'Đã thay đổi đặc điểm sản phẩm!']);
+        }
+    }
+    public function delete_current_feature(Request $request){
+        if($request->ajax()){
+            $data = $request->all();
+            $product_feature = ProductFeature::find($data['feature_id'])->delete();
+            return response()->json(['success_message' => 'Đã xóa đặc điểm sản phẩm!']);
+        }
     }
 }

@@ -51,7 +51,7 @@ use App\Models\aczreviews\Product;
                         <div class="item m-auto">
                             <a href="{{url('/product/'.$product['id'])}}" class="item-image-wrapper">
                                 <div class="item-image">
-                                    <img  src="{{url('aczreviews/front/images/product_images/medium/'.$product['image'])}}" alt="">
+                                    <img  src="{{url('aczreviews/front/images/product_images/large/'.$product['image'])}}" alt="">
                                 </div>
                             </a>
                             <div class="item-details mt-2">
@@ -81,13 +81,7 @@ use App\Models\aczreviews\Product;
                                     ?>
                                     <span class="item-rating-count">{{$rating_info['product_rating_count']}}</span>
                                 </div>
-                                <p class="item-desc"><strong>Mã:</strong> {{$product['code']}}</p>
-                                @if($product['has_versions']=='no')
-                                    <span ><strong>Giá thấp nhất:</strong></span> <span class="item-price"><?php echo number_format($product['price'])?></span>đ
-                                    @else
-                                    <?php $version_with_lowest_price = ProductVersion::get_version_with_lowest_price($product['id'])?>
-                                    <span ><strong>Giá thấp nhất:</strong> <span class="item-price"><?php echo number_format($version_with_lowest_price['price'])?></span>đ</span>
-                                @endif
+                                <p class="item-desc"><strong>Mã:</strong> {{$product['code']}}</p>                                    
                             </div>
                         </div>
                     </div>

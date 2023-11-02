@@ -82,11 +82,14 @@
                                     <a href = "javascript:void(0)" class="update_product_status"   data-product-id="{{$product['id']}}"><i style = "font-size:24px; color: red;"class = "fa-solid fa-circle-xmark" status = "inactive"></i></a>
                                     @endif 
                                 </td>
-                                <td>
-                                <a href="{{url('/admin/add-edit-products/'.$product['id'])}}" class = "admin-edit-btn">Sửa</a>
-                                <a href="{{url('/admin/add-images/'.$product['id'])}}" class = "admin-edit-btn">Thêm hình ảnh</a>
-                                <a href="{{url('/admin/add-edit-product-specs/'.$product['id'])}}" class = "admin-edit-btn">Thêm thông số</a>
-                                <a data-title = "Sản phẩm" class = "confirm_delete admin-delete-btn" data-model = "Product" data-model-url = "products" data-model-id = "{{$product['id']}}" href="javascript:void(0)">Xóa</a>
+                                <td style = "width: 120px;">
+                                    <div class="actions-on-products">
+                                        <a href="{{url('/admin/add-edit-products/'.$product['id'])}}" class = "admin-edit-btn">Chỉnh sửa</a>
+                                        <a href="{{url('/admin/add-images/'.$product['id'])}}" class = "admin-edit-btn">Ảnh Gallery</a>
+                                        <a href="{{url('/admin/add-edit-product-specs/'.$product['id'])}}" class = "admin-edit-btn"> Thông số</a>
+                                        <a href="{{url('/admin/add-edit-product-features/'.$product['id'])}}" class = "admin-edit-btn">Đặc điểm</a>
+                                        <a data-title = "Sản phẩm" class = "confirm_delete admin-delete-btn" data-model = "Product" data-model-url = "products" data-model-id = "{{$product['id']}}" href="javascript:void(0)">Xóa</a>
+                                    </div>
                                 </td>
                             </tr>
                             @endforeach

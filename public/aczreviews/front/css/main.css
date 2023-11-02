@@ -708,7 +708,7 @@ footer {
     position:relative;
 }
 .detail-gal .detail-main-img {
-    width: 86%;
+    max-width: 86%;
     float: right;
     /* width: 450px; */
     /* height: 450px; */
@@ -725,13 +725,17 @@ footer {
     border-radius: 6px;
     margin-bottom: 4px;
 }
-
+.detail-brand a {
+    color: blue !important;
+}
+.detail-feature-list {
+    list-style: disc ;
+}
 .detail-vendor-head {
     background-color: var(--primary-color-2);
     color: #e1e1e1;
     padding: 8px;
     position: relative;
-    
 }
 .detail-vendor-img {
     display:inline-block;
@@ -804,8 +808,7 @@ footer {
 /* home-banner */
 
 .item {
-    padding: 24px 6px;
-    border: 1px solid var(--primary_color);
+    padding: 6px;
     text-align: center;
     position: relative;
 }
@@ -842,16 +845,14 @@ footer {
 }
 .item-image-wrapper {
     display: block;
-    margin-top: 18px;
 }
 .item-image {
     overflow: hidden;
     align-items: center;
 }
 .item-image img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
+    max-height: 263px;
+    min-height: 263px;
 }
 .item-name {
     font-size: 18px;
